@@ -22,26 +22,26 @@ interface Rating {
 export default function Details({response} : {response: Movie}) {
     return (
         <>
-            <h1 className='font-bold text-xl mb-4 md:text-3xl'>
+            <h1 className='font-bold text-xl text-center mb-4 md:text-left md:text-3xl'>
                 {response.Title}({response.Year})
             </h1>
-            <h2 className='text-sm md:text-xl'>IMDb Rating&nbsp;
+            <h2 className='text-sm text-center md:text-left md:text-xl'>IMDb Rating&nbsp;
                 <span className='font-bold'>
                     {response.Ratings[0]?.Value}
                 </span>
             </h2>
-            <h2 className='text-sm md:text-xl'>{response.Ratings[1]?.Source}&nbsp;
+            <h2 className='text-sm text-center md:text-left md:text-xl'>{response.Ratings[1]?.Source}&nbsp;
                 <span className='font-bold'>
                     {response.Ratings[1]?.Value}
                 </span>
             </h2>
-            <h2 className='text-sm md:text-xl'>Rated&nbsp;
+            <h2 className='text-sm text-center md:text-left md:text-xl'>Rated&nbsp;
                 <span className='font-bold'>
                     {response.Rated}
                 </span>
             </h2>
-            <p className='text-xs'>Runtime: <span className='font-bold'>{response.Runtime}</span></p>
-            <p className='text-xs'>Released Date: <span className='font-bold'>{response.Released}</span></p>
+            <p className='text-xs text-center md:text-left'>Runtime: <span className='font-bold'>{response.Runtime}</span></p>
+            <p className='text-xs text-center md:text-left'>Released Date: <span className='font-bold'>{response.Released}</span></p>
             <br></br>
             <p className='text-xs md:text-base'><span className='font-bold'>Director: </span>{response.Director}</p>
             <p className='text-xs md:text-base'><span className='font-bold'>Writer: </span>{response.Writer}</p>
