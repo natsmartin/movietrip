@@ -11,16 +11,16 @@ export default function MovieBox() {
     const response = state.data
 
     if (state.isLoading) {
-        return <div><h1>Loading...</h1></div>
+        return <div className='flex md:min-h-10 justify-center md:items-center'><h1>Loading...</h1></div>
     }
 
     if (response === null || response.Error) {
-        return <div className='min-h-50% md:min-h-2'><h1>{response?.Error || null}</h1></div>
+        return <div className='flex md:min-h-10 justify-center md:items-center'><h1>{response?.Error || null}</h1></div>
     }
 
     return (
 
-        <div className='flex flex-col md:max-h-50% md:flex-row md:justify-end md:m-8'>
+        <div className='flex flex-col max-h-50% md:flex-row md:justify-end md:m-8'>
             <div className='w-full m-4 md:w-auto'>
                 <Image
                     src={response.Poster !== 'N/A' ? response.Poster : 'https://demofree.sirv.com/nope-not-here.jpg'}
