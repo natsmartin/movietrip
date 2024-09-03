@@ -1,0 +1,36 @@
+{
+    "Title": "Deadpool & Wolverine",
+    "Year": "2024",
+    "Rated": "R",
+    "Released": "26 Jul 2024",
+    "Runtime": "128 min",
+    "Genre": "Action, Adventure, Comedy",
+    "Director": "Shawn Levy",
+    "Writer": "Ryan Reynolds, Rhett Reese, Paul Wernick",
+    "Actors": "Ryan Reynolds, Hugh Jackman, Emma Corrin",
+    "Plot": "Deadpool is offered a place in the Marvel Cinematic Universe by the Time Variance Authority, but instead recruits a variant of Wolverine to save his universe from extinction.",
+    "Language": "English, French, Spanish",
+    "Country": "United States, United Kingdom, Australia, New Zealand, Canada",
+    "Awards": "4 wins & 1 nomination",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BNzRiMjg0MzUtNTQ1Mi00Y2Q5LWEwM2MtMzUwZDU5NmVjN2NkXkEyXkFqcGc@._V1_SX300.jpg",
+    "Ratings": [
+        {
+            "Source": "Internet Movie Database",
+            "Value": "8.1/10"
+        },
+        {
+            "Source": "Rotten Tomatoes",
+            "Value": "78%"
+        }
+    ],
+    "Metascore": "N/A",
+    "imdbRating": "8.1",
+    "imdbVotes": "162,577",
+    "imdbID": "tt6263850",
+    "Type": "movie",
+    "DVD": "N/A",
+    "BoxOffice": "$395,575,919",
+    "Production": "N/A",
+    "Website": "N/A",
+    "Response": "True"
+}
