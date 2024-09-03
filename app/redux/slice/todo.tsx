@@ -16,7 +16,7 @@ export const fetchMovie = createAsyncThunk('fetchMovie',
     async ({ title, year }: { title: string, year: any }) => {
         let optionalParam = ''
         optionalParam += year > 0 ? `&y=${year}` : ''
-        const response = await fetch(`http://www.omdbapi.com/?&apikey=${process.env.NEXT_PUBLIC_APIKEY}&t=${title}${optionalParam}`)
+        const response = await fetch(`https://www.omdbapi.com/?&apikey=${process.env.NEXT_PUBLIC_APIKEY}&t=${title}${optionalParam}`)
         const data = response.json()
         return data
     })
