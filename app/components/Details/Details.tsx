@@ -27,12 +27,12 @@ export default function Details({response} : {response: Movie}) {
             </h1>
             <h2 className='text-sm md:text-xl'>IMDb Rating&nbsp;
                 <span className='font-bold'>
-                    {response.Ratings[0].Value}
+                    {response.Ratings[0]?.Value}
                 </span>
             </h2>
-            <h2 className='text-sm md:text-xl'>{response.Ratings[1].Source}&nbsp;
+            <h2 className='text-sm md:text-xl'>{response.Ratings[1]?.Source}&nbsp;
                 <span className='font-bold'>
-                    {response.Ratings[1].Value}
+                    {response.Ratings[1]?.Value}
                 </span>
             </h2>
             <h2 className='text-sm md:text-xl'>Rated&nbsp;
@@ -40,7 +40,8 @@ export default function Details({response} : {response: Movie}) {
                     {response.Rated}
                 </span>
             </h2>
-            <p className='text-xs'>Released Date: {response.Released}</p>
+            <p className='text-xs'>Runtime: <span className='font-bold'>{response.Runtime}</span></p>
+            <p className='text-xs'>Released Date: <span className='font-bold'>{response.Released}</span></p>
             <br></br>
             <p className='text-xs md:text-base'><span className='font-bold'>Director: </span>{response.Director}</p>
             <p className='text-xs md:text-base'><span className='font-bold'>Writer: </span>{response.Writer}</p>

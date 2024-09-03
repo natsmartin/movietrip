@@ -8,6 +8,12 @@ const nextConfig = {
                 port: '',
                 pathname: '/images/**',
             },
+            {
+                protocol: 'https',
+                hostname: 'demofree.sirv.com',
+                port: '',
+                pathname: '/**',
+            },
         ],
     }
 };
