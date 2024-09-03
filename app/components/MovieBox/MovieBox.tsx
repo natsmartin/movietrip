@@ -15,7 +15,7 @@ export default function MovieBox() {
     }
 
     if (response === null || response.Error) {
-        return <div><h1>{response?.Error || null}</h1></div>
+        return <div className='min-h-50% md:min-h-2'><h1>{response?.Error || null}</h1></div>
     }
 
     return (
