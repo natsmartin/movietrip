@@ -11,11 +11,19 @@ export default function MovieBox() {
     const response = state.data
 
     if (state.isLoading) {
-        return <div className='flex md:min-h-10 justify-center md:items-center'><h1>Loading...</h1></div>
+        return (
+            <div className='flex md:min-h-10 justify-center md:items-center'>
+                <h1>Loading...</h1>
+            </div>
+        )
     }
 
     if (response === null || response.Error) {
-        return <div className='flex md:min-h-10 justify-center md:items-center'><h1>{response?.Error || null}</h1></div>
+        return (
+            <div className='flex md:min-h-10 justify-center md:items-center'>
+                <h1>{response?.Error || null}</h1>
+            </div>
+        )
     }
 
     return (
@@ -28,7 +36,7 @@ export default function MovieBox() {
                     width={300}
                     height={440} />
             </div>
-            <div className='flex flex-col w-full m-4 px-8 md:w-1/2'>
+            <div className='flex flex-col w-full m-4 px-16 md:p-0 md:w-1/2'>
                 <Details response={response} />
             </div>
         </div>

@@ -7,7 +7,7 @@ import Footer from "@/components/Footer/Footer";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col md:items-center justify-evenly py-8 md:p-16">
+    <main className="flex min-h-screen flex-col md:items-center justify-evenly pt-8 md:p-16">
       <>
         <Header />
         <Search />
