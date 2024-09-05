@@ -1,9 +1,9 @@
 'use client'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { fetchMovie } from '@/app/redux/slice/todo'
-import { store } from '@/app/redux/store'
-import Button from '@/app/components/Button/Button'
+import { fetchMovie } from '@app/redux/slice/todo'
+import { store } from '@app/redux/store'
+import Button from '@app/components/Button/Button'
 
 type AppDispatch = typeof store.dispatch;
 

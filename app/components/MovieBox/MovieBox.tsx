@@ -1,9 +1,9 @@
 'use client'
 import React from 'react'
 import Image from "next/image";
-import Details from '@/components/Details/Details';
+import Details from '@components/Details/Details';
 import { useSelector } from 'react-redux';
-import { Response } from '@/app/redux/slice/todo';
+import { Response } from '@app/redux/slice/todo';
 
 
 export default function MovieBox() {
