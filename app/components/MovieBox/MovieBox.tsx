@@ -18,10 +18,10 @@ export default function MovieBox() {
         )
     }
 
-    if (response === null || response.Error) {
+    if (!response || response.Error) {
         return (
             <div className='flex md:min-h-10 justify-center md:items-center'>
-                <h1>{response?.Error}</h1>
+                <h1>{response.Error}</h1>
             </div>
         )
     }
