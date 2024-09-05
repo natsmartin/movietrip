@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { fetchMovie } from '@/app/redux/slice/todo'
 import { store } from '@/app/redux/store'
+import Button from '@/app/components/Button/Button'
 
 type AppDispatch = typeof store.dispatch;
 
@@ -36,7 +37,7 @@ export default function Search() {
     }
 
     return (
-        <div className='flex flex-col items-center m-8 md:flex md:flex-row md:m-4'>
+        <div className='flex flex-col items-center m-2 p-2 md:p-8 md:flex md:flex-row md:m-8'>
 
             <div className={`${modal} fixed bg-[#0006] z-10 top-0 left-1/2
             -translate-x-1/2 overflow-auto h-full w-full`}>
@@ -57,13 +58,7 @@ export default function Search() {
                 placeholder='Year' max={new Date().getFullYear()}
                 onChange={handleNumChange} >
             </input>
-            <button type='button'
-                className={`text-white bg-gray-800 hover:bg-gray-900 m-2
-                focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 md:ml-2
-                dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700`}
-                onClick={onSearch} >
-                Search
-            </button>
+            <Button onClick={onSearch} label='Search' />
         </div>
 
     )

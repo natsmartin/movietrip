@@ -7,13 +7,13 @@ import Footer from "@/components/Footer/Footer";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col md:items-center justify-evenly pt-8 md:p-16">
-      <>
-        <Header />
+    <div className="flex min-h-screen flex-col justify-evenly md:items-center pt-8 md:p-16">
+      <Header />
+      <main className="flex flex-col md:items-center">
         <Search />
         <MovieBox />
-        <Footer />
-      </>
-    </main>
+      </main>
+      <Footer />
+    </div>
   );
 }

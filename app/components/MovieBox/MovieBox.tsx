@@ -28,7 +28,7 @@ export default function MovieBox() {
 
     return (
 
-        <div className='flex flex-col min-h-50% md:flex-row items-center md:justify-end md:m-8'>
+        <div className='flex flex-col min-h-50% md:flex-row items-center md:justify-end'>
             <div className='w-1/2 md:w-auto m-0 md:m-4'>
                 <Image
                     src={response.Poster !== 'N/A' ? response.Poster : 'https://demofree.sirv.com/nope-not-here.jpg'}
