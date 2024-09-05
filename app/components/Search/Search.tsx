@@ -49,12 +49,12 @@ export default function Search() {
             </div>
 
             <input id='title-input' value={title} type='text'
-                className={`md:w-full rounded p-1 text-xs m-2 md:mx-4 md:text-base`}
+                className={`dark:text-black md:w-full rounded p-1 text-xs m-2 md:mx-4 md:text-base`}
                 placeholder='Search for title' maxLength={100}
                 onChange={handleTextChange} >
             </input>
             <input value={year || ''} type='number'
-                className={`w-1/4 text-center md:w-2/6 rounded p-1 text-xs m-2 md:mx-4 md:text-base`}
+                className={`dark:text-black w-1/4 text-center md:w-2/6 rounded p-1 text-xs m-2 md:mx-4 md:text-base`}
                 placeholder='Year' max={new Date().getFullYear()}
                 onChange={handleNumChange} >
             </input>
