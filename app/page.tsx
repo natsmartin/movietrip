@@ -1,7 +1,6 @@
 
 import Header from "@components/Header/Header";
 import Search from "@components/Search/Search";
-import MovieBox from "@components/MovieBox/MovieBox";
 import Footer from "@components/Footer/Footer";
 
 
@@ -11,7 +10,6 @@ export default function Home() {
       <Header />
       <main className="flex flex-col md:items-center">
         <Search />
-        <MovieBox />
       </main>
       <Footer />
     </div>

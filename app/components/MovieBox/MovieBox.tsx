@@ -1,30 +1,21 @@
-'use client'
+
 import React from 'react'
 import Image from "next/image";
 import Details from '@components/Details/Details';
-import { useSelector } from 'react-redux';
-import { Response } from '@app/redux/slice/todo';
 
 
-export default function MovieBox() {
-    const state: any = useSelector((state: Response) => state.fetchMovie)
-    const response = state.data
+export default function MovieBox({movie}: {movie: any}) {
 
-    if (state.isLoading) {
-        return (
-            <div className='flex md:min-h-10 justify-center md:items-center'>
-                <h1>Loading...</h1>
-            </div>
-        )
-    }
+    const response = movie.data
 
     if (!response || response.Error) {
         return (
             <div className='flex md:min-h-10 justify-center md:items-center'>
-                <h1>{response?.Error}</h1>
+                <p>{response?.Error}</p>
             </div>
         )
     }
+
 
     return (
 

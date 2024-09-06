@@ -43,9 +43,9 @@ export default function Details({ response }: { response: Movie }) {
             <h1 className='font-bold text-xl text-center mb-4 md:text-left md:text-3xl'>
                 {response.Title}({response.Year})
             </h1>
-            {response.Ratings[0] ?
+            {response.Ratings && response.Ratings[0] ?
                 (
-                    <h2 className='text-xs px-8 md:p-0 md:text-xl'>IMDb Rating⭐&nbsp;
+                    <h2 className='details-h2'>IMDb Rating⭐&nbsp;
                         <span className={`font-bold ${colorStatus(response.Ratings[0].Value)}`}>
                             {splitRating(response.Ratings[0].Value)[0]}
                         </span>
@@ -53,20 +53,20 @@ export default function Details({ response }: { response: Movie }) {
                             /{splitRating(response.Ratings[0].Value)[1]}
                         </span>
                     </h2>
-                ) : <h2>N/A⭐</h2>
+                ) : <h2 className='details-h2'>N/A⭐</h2>
             }
 
 
             {
-                response.Ratings[1] ?
-                    <h2 className='text-xs px-8 md:p-0 md:text-xl'>{response.Ratings[1].Source}🍅&nbsp;
+                response.Ratings && response.Ratings[1] ?
+                    <h2 className='details-h2'>{response.Ratings[1].Source}🍅&nbsp;
                         <span className={`font-bold ${colorStatus(response.Ratings[1].Value)}`} >
                             {splitPercent(response.Ratings[1].Value)[0]}%
                         </span>
-                    </h2> : <h2>N/A🍅</h2>
+                    </h2> : <h2 className='details-h2'>N/A🍅</h2>
             }
 
-            <h2 className='text-xs px-8 md:p-0 md:text-xl'>Rated&nbsp;
+            <h2 className='details-h2'>Rated&nbsp;
                 <span className='font-bold'>
                     {response.Rated}
                 </span>
