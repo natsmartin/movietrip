@@ -2,7 +2,7 @@
 import React, { useState, Suspense } from 'react'
 import { handleSubmit } from '@utils/actions/fetch-data'
 import { useFormState } from 'react-dom'
-import MovieBox from "@components/MovieBox/MovieBox"
+import MovieBox from "@sections/MovieBox/MovieBox"
 import Loading from '@app/loading'
 
 export default function Search() {

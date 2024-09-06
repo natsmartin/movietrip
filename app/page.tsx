@@ -1,6 +1,6 @@
 
 import Header from "@components/Header/Header";
-import Search from "@components/Search/Search";
+import Search from "@sections/Search/Search";
 import Footer from "@components/Footer/Footer";
 
 

@@ -1,7 +1,7 @@
 
 import React from 'react'
 import Image from "next/image";
-import Details from '@components/Details/Details';
+import Details from '@sections/Details/Details';
 
 
 export default function MovieBox({movie}: {movie: any}) {
@@ -25,7 +25,8 @@ export default function MovieBox({movie}: {movie: any}) {
                     src={response.Poster !== 'N/A' ? response.Poster : 'https://demofree.sirv.com/nope-not-here.jpg'}
                     alt={response.Title}
                     width={300}
-                    height={440} />
+                    height={440}
+                    priority={true} />
             </div>
             <div className='flex flex-col w-full m-4 px-16 md:p-0 md:w-1/2'>
                 <Details response={response} />
