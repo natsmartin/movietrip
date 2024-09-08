@@ -1,16 +1,39 @@
 'use client'
-import React, { useState, Suspense } from 'react'
+
 import { handleSubmit } from '@utils/actions/fetch-data'
 import { useFormState } from 'react-dom'
+
+import React, { useState, useEffect } from 'react'
+import { fetchMovie } from '@app/utils/actions/fetch-data';
 import MovieBox from "@sections/MovieBox/MovieBox"
 import Loading from '@app/loading'
+import { Suspense } from "react";
+
+
 
 export default function Search() {
-    const [title, setTitle] = useState<string>('')
-    const [year, setYear] = useState<any>()
-    const [modal, setModal] = useState<string>('hidden')
+    const [title, setTitle] = useState('')
+    const [year, setYear] = useState()
+    const [modal, setModal] = useState('hidden')
 
     const [formState, formAction] = useFormState(handleSubmit, { data: '' })
+    const [movie, setMovie] = useState()
+    const [params, setParams] = useState({ title: '', year: 0 })
+
+
+    useEffect(() => {
+        // const params = formState.data
+        setParams(formState.data)
+
+        async function fetchData() {
+            const response = await fetchMovie(params)
+            setMovie(response)
+        }
+
+        if (params.title) {
+            fetchData()
+        }
+    }, [formState.data, params])
 
     const onSearch = () => {
         const titleInput: any = document.getElementById('title-input')
@@ -62,8 +85,8 @@ export default function Search() {
                     </button>
                 </form>
             </div>
-            <Suspense fallback={<Loading />}>
-                <MovieBox movie={formState} />
+            <Suspense fallback={<Loading />} >
+                <MovieBox movie={movie} />
             </Suspense>
         </>
 
