@@ -26,8 +26,6 @@ interface Rating {
 
 export default async function MovieBox({ movie }: { movie: Movie | any }) {
 
-
-
     if (!movie || movie.Error) {
         return (
             <div className='flex md:min-h-10 justify-center md:items-center'>

@@ -14,12 +14,9 @@ export async function handleSubmit(prevState: any, formData: FormData) {
         year: Number(formData.get('year')),
     }
 
-    if (fields.title) {
-        // const response = await fetchMovie(fields)
-
-        return {
-            ...prevState,
-            data: fields
-        }
+    return {
+        ...prevState,
+        data: fields
     }
+
 }
