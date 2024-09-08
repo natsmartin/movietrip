@@ -18,12 +18,10 @@ export default function Search() {
 
     const [formState, formAction] = useFormState(handleSubmit, { data: '' })
     const [movie, setMovie] = useState()
-    const [params, setParams] = useState({ title: '', year: 0 })
 
 
     useEffect(() => {
-        // const params = formState.data
-        setParams(formState.data)
+        const params = formState.data
 
         async function fetchData() {
             const response = await fetchMovie(params)
@@ -33,7 +31,7 @@ export default function Search() {
         if (params.title) {
             fetchData()
         }
-    }, [formState.data, params])
+    }, [formState.data])
 
     const onSearch = () => {
         const titleInput: any = document.getElementById('title-input')
