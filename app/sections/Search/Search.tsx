@@ -1,11 +1,10 @@
 'use client'
 
 import { useFormState } from 'react-dom'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import { handleSubmit, fetchMovie } from '@app/utils/actions/fetch-data';
 import MovieBox from "@sections/MovieBox/MovieBox"
 import Loading from '@app/loading'
-import { Suspense } from "react";
 
 
 
