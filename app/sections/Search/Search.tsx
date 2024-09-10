@@ -75,7 +75,7 @@ export default function Search() {
                         >
                             <option selected value=''> </option>
                             {
-                                arrYear.map((year, index) => <option key={index} value={year}>{year}</option>)
+                                arrYear.reverse().map((year, index) => <option key={index} value={year}>{year}</option>)
                             }
                         </select>
                     </div>
