@@ -51,7 +51,7 @@ export default function Search() {
 
     return (
         <>
-            <div className='flex flex-col items-center md:w-full m-2 p-2 md:p-8 md:flex md:flex-row md:m-8'>
+            <div className='flex flex-col justify-center items-center md:w-full m-2 p-2 md:p-8 md:flex md:flex-row md:m-8'>
 
                 <div className={`${modal} fixed bg-[#0006] z-10 top-0 left-1/2
                     -translate-x-1/2 overflow-auto h-full w-full`}>
@@ -61,16 +61,18 @@ export default function Search() {
                         <p className='m-6'>Please enter a movie title.</p>
                     </div>
                 </div>
-                <form action={formAction} className='input-title-clamp flex flex-col w-[60%] md:w-full justify-center items-center md:flex md:flex-row'>
-                    <input id='title-input' type='text' name='title' required
-                        className={`dark:text-black w-full md:w-1/2 rounded p-1 text-xs m-2 md:mx-4 md:text-base`}
-                        placeholder='Search for title' maxLength={100}
-                    >
-                    </input>
-                    <div className='flex items-center text-sm md:text-base'>
-                        <label htmlFor='year'> Year: </label>
+                <form action={formAction} className='flex flex-col w-full justify-center items-center md:flex md:flex-row'>
+                    <div className='flex justify-center md:justify-end w-[70%] md:w-[25vw]'>
+                        <input id='title-input' type='text' name='title' required
+                            className={`input-title-clamp dark:text-black rounded p-1 text-xs m-2 md:mx-4 md:text-base`}
+                            placeholder='Search for title' maxLength={100}
+                        >
+                        </input>
+                    </div>
+                    <div className='flex items-center'>
+                        <label htmlFor='year' className='text-sm md:text-base'> Year: </label>
                         <select value={year || ''} name='year'
-                            className={`input-year-clamp dark:text-black text-center rounded p-1 text-xs m-2 md:mx-4 md:text-base`}
+                            className={`input-year-clamp dark:text-black text-center rounded p-1 m-2 text-xs md:text-base md:mx-4`}
                             onChange={handleNumChange}
                         >
                             <option selected value=''> </option>
@@ -78,13 +80,13 @@ export default function Search() {
                                 arrYear.reverse().map((year, index) => <option key={index} value={year}>{year}</option>)
                             }
                         </select>
-                    </div>
-                    <button type='submit' className='text-white bg-gray-800 hover:bg-gray-900 m-2
-                        focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 md:ml-2
+                        <button type='submit' className='text-white bg-gray-800 hover:bg-gray-900 m-2
+                        focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-4 py-2 md:text-base md:ml-2
                         dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700'
-                        onClick={onSearch} >
-                        Search
-                    </button>
+                            onClick={onSearch} >
+                            Search
+                        </button>
+                    </div>
                 </form>
             </div>
             <Suspense fallback={<Loading />} >

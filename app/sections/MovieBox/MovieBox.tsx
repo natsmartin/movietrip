@@ -38,7 +38,7 @@ export default async function MovieBox({ movie }: { movie: Movie | any }) {
     return (
 
         <div className='flex flex-col min-h-50% md:flex-row items-center md:justify-end'>
-            <div className='w-1/2 md:w-auto m-0 md:m-4'>
+            <div className='w-1/2 md:w-auto m-0 md:m-4 flex justify-center'>
                 <Image
                     src={movie.Poster !== 'N/A' ? movie.Poster : 'https://demofree.sirv.com/nope-not-here.jpg'}
                     alt={movie.Title}
