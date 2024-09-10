@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col justify-evenly md:items-center pt-8 md:p-16">
       <Header />
-      <main className="flex flex-col md:items-center">
+      <main className="flex flex-col md:items-center w-full">
         <Search />
       </main>
       <Footer />

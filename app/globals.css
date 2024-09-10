@@ -54,3 +54,11 @@ body {
       line-height: 1.75rem /* 28px */;
   }
 }
+
+.input-title-clamp {
+  width: clamp(50%, 25vw, 100%)
+}
+
+.input-year-clamp {
+  width: clamp(85px, 13vw, 50%);
+}
