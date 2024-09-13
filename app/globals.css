@@ -6,6 +6,14 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --min-normal-text: .75rem;
+  --max-normal-text: 1rem;
+  --font-header-max: 4.5rem;
+  --font-header-min: 2.25rem;
+  --max-heading1: 3rem;
+  --min-heading1: 1.5rem;
+  --max-heading2: 2rem;
+  --min-heading2: 1rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -40,19 +48,16 @@ body {
   }
 }
 
-.details-h2 {
-  font-size: 0.75rem /* 12px */;
-  line-height: 1rem /* 16px */;
-  padding-left: 2rem /* 32px */;
-  padding-right: 2rem /* 32px */;
+.header-clamp {
+  font-size: clamp(var(--font-header-min), 10vw, var(--font-header-max));
 }
 
-@media (min-width: 768px) {
-  .details-h2 {
-      padding: 0px;
-      font-size: 1.25rem /* 20px */;
-      line-height: 1.75rem /* 28px */;
-  }
+.heading1 {
+  font-size: clamp(var(--min-heading1), 2vw, var(--max-heading1));
+}
+
+.heading2 {
+  font-size: clamp(var(--min-heading2), 2vw, var(--max-heading2));
 }
 
 .input-title-clamp {
@@ -61,4 +66,8 @@ body {
 
 .input-year-clamp {
   width: clamp(85px, 13vw, 50%);
+}
+
+.normal-text {
+  font-size: clamp(var(--min-normal-text), 1.5vw, var(--max-normal-text));
 }
