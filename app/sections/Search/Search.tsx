@@ -1,24 +1,36 @@
 'use client'
 
-import { useFormState } from 'react-dom'
-import React, { useState, useEffect, Suspense } from 'react'
-import { handleSubmit, fetchMovie } from '@app/utils/actions/fetch-data';
+import React, { useState, useEffect, FormEvent, Suspense } from 'react'
+import { fetchMovie } from '@app/utils/actions/fetch-data';
 import MovieBox from "@sections/MovieBox/MovieBox"
 import Loading from '@app/loading'
 
-
+interface ParamsProps {
+    title: FormDataEntryValue | null,
+    year: number
+}
 
 export default function Search() {
 
     const [year, setYear] = useState()
     const [modal, setModal] = useState('hidden')
 
-    const [formState, formAction] = useFormState(handleSubmit, { data: '' })
+    const [params, setParams] = useState<ParamsProps>({ title: '', year: 0})
     const [movie, setMovie] = useState()
 
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        const formData = new FormData(event.currentTarget)
+
+        setParams({
+            title: formData.get('title'),
+            year: Number(formData.get('year')),
+        })
+
+    }
 
     useEffect(() => {
-        const params = formState.data
 
         async function fetchData() {
             const response = await fetchMovie(params)
@@ -28,7 +40,7 @@ export default function Search() {
         if (params.title) {
             fetchData()
         }
-    }, [formState.data])
+    }, [params])
 
     const onSearch = () => {
         const titleInput: any = document.getElementById('title-input')
@@ -61,7 +73,7 @@ export default function Search() {
                         <p className='m-6'>Please enter a movie title.</p>
                     </div>
                 </div>
-                <form action={formAction} className='flex flex-col w-full justify-center items-center md:flex md:flex-row'>
+                <form onSubmit={handleSubmit} className='flex flex-col w-full md:w-[950px] justify-center items-center md:flex md:flex-row'>
                     <div className='flex justify-center md:justify-end w-[70%] md:w-[25vw]'>
                         <input id='title-input' type='text' name='title' required
                             className={`input-title-clamp dark:text-black rounded p-1 text-xs m-2 md:mx-4 md:text-base`}
