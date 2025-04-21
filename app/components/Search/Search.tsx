@@ -2,30 +2,28 @@
 
 import React, { useState, useEffect, FormEvent, Suspense } from 'react'
 import { fetchMovie } from '@app/utils/actions/fetch-data';
-import MovieBox from "@sections/MovieBox/MovieBox"
+import MovieList from '@sections/MovieList/MovieList';
 import Loading from '@app/loading'
 
 interface ParamsProps {
-    title: FormDataEntryValue | null,
-    year: number
+    movieTitle: FormDataEntryValue | null,
 }
+
 
 export default function Search() {
 
-    const [year, setYear] = useState()
     const [modal, setModal] = useState('hidden')
 
-    const [params, setParams] = useState<ParamsProps>({ title: '', year: 0})
-    const [movie, setMovie] = useState()
+    const [params, setParams] = useState<ParamsProps>({ movieTitle: ''})
+    const [movieList, setMovieList] = useState()
 
-    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const formData = new FormData(event.currentTarget)
 
         setParams({
-            title: formData.get('title'),
-            year: Number(formData.get('year')),
+            movieTitle: formData.get('title'),
         })
 
     }
@@ -34,10 +32,11 @@ export default function Search() {
 
         async function fetchData() {
             const response = await fetchMovie(params)
-            setMovie(response)
+            console.log(response)
+            setMovieList(response.results)
         }
 
-        if (params.title) {
+        if (params.movieTitle) {
             fetchData()
         }
     }, [params])
@@ -48,17 +47,6 @@ export default function Search() {
         } else {
             setModal('block')
         }
-    }
-
-    const handleNumChange = ({ target }: { target: any }) => {
-        let { value } = target
-        setYear(value)
-    }
-
-    const arrYear = []
-
-    for (let i = 1950; i <= new Date().getFullYear(); i++) {
-        arrYear.push(i)
     }
 
     return (
@@ -73,25 +61,13 @@ export default function Search() {
                         <p className='m-6'>Please enter a movie title.</p>
                     </div>
                 </div>
-                <form onSubmit={handleSubmit} className='flex flex-col w-full md:w-[950px] justify-center items-center md:flex md:flex-row'>
-                    <div className='flex justify-center md:justify-end w-[70%] md:w-[25vw]'>
+                <form onSubmit={handleSubmit} className='flex w-full md:w-[950px] justify-center items-center'>
+                    <div className='flex justify-center w-[80%] lg:w-[50%]'>
                         <input id='title-input' type='text' name='title' required
-                            className={`input-title-clamp dark:text-black rounded p-1 text-xs m-2 md:mx-4 md:text-base`}
+                            className='input-title-clamp dark:text-black rounded p-1 text-xs m-2 md:mx-4 md:text-base'
                             placeholder='Search for title' maxLength={100}
                         >
                         </input>
-                    </div>
-                    <div className='flex items-center'>
-                        <label htmlFor='year' className='text-sm md:text-base'> Year: </label>
-                        <select value={year || ''} name='year'
-                            className={`input-year-clamp dark:text-black text-center rounded p-1 m-2 text-xs md:text-base md:mx-4`}
-                            onChange={handleNumChange}
-                        >
-                            <option selected value=''> </option>
-                            {
-                                arrYear.reverse().map((year, index) => <option key={index} value={year}>{year}</option>)
-                            }
-                        </select>
                         <button type='submit' className='text-white bg-gray-800 hover:bg-gray-900 m-2
                         focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-4 py-2 md:text-base md:ml-2
                         dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700'
@@ -102,7 +78,7 @@ export default function Search() {
                 </form>
             </div>
             <Suspense fallback={<Loading />} >
-                <MovieBox movie={movie} />
+                <MovieList movieList={movieList} />
             </Suspense>
         </>
 

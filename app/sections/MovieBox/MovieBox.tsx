@@ -1,54 +1,37 @@
+import Details from "../Details/Details";
+import Link from "next/link";
 
-
-import Image from "next/image";
-import Details from '../Details/Details';
-
-
-interface Movie {
-    Title: string;
-    Year: string;
-    Ratings: Array<Rating>;
-    Rated: string;
-    Released: string;
-    Plot: string;
-    Genre: string;
-    Director: string;
-    Writer: string;
-    Actors: string;
-    Runtime: string;
+export interface Movie {
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
 }
 
-interface Rating {
-    Source: string;
-    Value: string;
-}
-
-
-export default async function MovieBox({ movie }: { movie: Movie | any }) {
-
-    if (!movie || movie.Error) {
-        return (
-            <div className='flex md:min-h-10 justify-center md:items-center'>
-                <p>{movie?.Error}</p>
-            </div>
-        )
-    }
-
-
+export default function MovieBox({ movie }: { movie: Movie | any }) {
+  if (!movie || movie.Error) {
     return (
+      <div className="flex md:min-h-10 justify-center md:items-center">
+        <p>{movie?.Error}</p>
+      </div>
+    );
+  }
 
-        <div className='flex flex-col min-h-50% md:flex-row items-center md:justify-end'>
-            <div className='w-1/2 md:w-auto m-0 md:m-4 flex justify-center'>
-                <Image
-                    src={movie.Poster !== 'N/A' ? movie.Poster : 'https://demofree.sirv.com/nope-not-here.jpg'}
-                    alt={movie.Title}
-                    width={300}
-                    height={440}
-                    priority={true} />
-            </div>
-            <div className='flex flex-col w-full m-4 px-16 md:p-0 md:w-1/2'>
-                <Details response={movie} />
-            </div>
-        </div>
-    )
+  return (
+    <Link href={`/movie/${movie.id}`}>
+    <div
+      className="flex w-[90vw] h-[145px] bg-white border-2 border-slate-500 rounded-md m-2 shadow-lg
+        md:w-[65vw] hover:scale-105 transition-all cursor-pointer"
+    >
+      <Details response={movie} />
+    </div>
+    </Link>
+  );
 }

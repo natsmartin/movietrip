@@ -10,8 +10,8 @@
   --max-normal-text: 1rem;
   --font-header-max: 4.5rem;
   --font-header-min: 2.25rem;
-  --max-heading1: 3rem;
-  --min-heading1: 1.5rem;
+  --max-heading1: 1.25rem;
+  --min-heading1: 1rem;
   --max-heading2: 2rem;
   --min-heading2: 1rem;
 }
@@ -52,7 +52,7 @@ body {
   font-size: clamp(var(--font-header-min), 10vw, var(--font-header-max));
 }
 
-.heading1 {
+.title {
   font-size: clamp(var(--min-heading1), 2vw, var(--max-heading1));
 }
 
@@ -61,7 +61,7 @@ body {
 }
 
 .input-title-clamp {
-  width: clamp(50%, 40vw, 100%)
+  width: clamp(50%, 50vw, 100%)
 }
 
 .input-year-clamp {

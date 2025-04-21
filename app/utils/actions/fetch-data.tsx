@@ -1,8 +1,18 @@
 'use server'
 
-export const fetchMovie = async ({ title, year }: { title: FormDataEntryValue | null , year: number }) => {
-    let optionalParam = ''
-    optionalParam += year > 0 ? `&y=${year}` : ''
-    const response = await fetch(`https://www.omdbapi.com/?&apikey=${process.env.APIKEY}&t=${title}${optionalParam}`)
-    return response.json()
+const baseURL = 'https://api.themoviedb.org/3'
+
+export const fetchMovie = async ({ movieTitle }: { movieTitle: FormDataEntryValue | null }) => {
+    const response = await fetch(`${baseURL}/search/movie?api_key=${process.env.API_KEY}&query=${movieTitle}`);
+    return response.json();
+}
+
+export const fetchMovieDetails = async (id: string) => {
+    const response = await fetch(`${baseURL}/movie/${id}?api_key=${process.env.API_KEY}`);
+    return response.json();
+}
+
+export const fetchMovieCredits = async (id: string) => {
+    const response = await fetch(`${baseURL}/movie/${id}/credits?api_key=${process.env.API_KEY}`);
+    return response.json();
 }
