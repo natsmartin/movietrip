@@ -32,7 +32,6 @@ export default function Search() {
 
         async function fetchData() {
             const response = await fetchMovie(params)
-            console.log(response)
             setMovieList(response.results)
         }
 
