@@ -96,7 +96,7 @@ const MovieDetails = ({
             </p>
             <p className="font-bold text-xs md:text-base">
               Overview:{" "}
-              <span className="font-normal">{movieDetails.overview}</span>
+              <span className="font-normal">{movieDetails.overview || 'Not Available'}</span>
             </p>
           </div>
         </div>
