@@ -34,6 +34,15 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.box {
+  background-color: rgb(var(--background-end-rgb));
+  border-color: rgb(var(--foreground-rgb));
+}
+
+.castbox {
+  color: black;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

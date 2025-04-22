@@ -29,17 +29,16 @@ const MovieDetails = ({
   return (
     <>
       {movieDetails ? (
-        <div className="flex flex-col w-[80vw] my-4 md:flex-row">
-          <div className="h-fit shadow-2xl">
-            <Image
-              className="rounded-xl"
-              src={`https://media.themoviedb.org/t/p/w300_and_h450_bestv2${movieDetails.poster_path}`}
-              alt={movieDetails.title}
-              width={300}
-              height={450}
-              priority={true}
-            />
-          </div>
+        <div className="flex flex-col w-[80vw] my-4 md:flex-row [&_p]:py-1">
+          <Image
+            className="h-fit shadow-3xl rounded-xl"
+            src={`https://media.themoviedb.org/t/p/w300_and_h450_bestv2${movieDetails.poster_path}`}
+            alt={movieDetails.title}
+            width={300}
+            height={450}
+            priority={true}
+          />
+
           <div className="flex flex-col w-full md:mx-10">
             <h1 className="w-full font-bold text-center text-xl my-1 md:text-left md:w-auto md:text-3xl">
               {movieDetails.title}
@@ -53,7 +52,7 @@ const MovieDetails = ({
                   </span>
                 </p>
                 <div className="flex">
-                  <p className="font-bold text-xs md:text-base">
+                  <p className="font-bold text-xs *:inline-block w-[40vw] md:text-base">
                     Genre:&nbsp;
                     {movieDetails.genres.map(
                       (genre: { id: number; name: string }, index: number) => (
@@ -71,11 +70,11 @@ const MovieDetails = ({
                     {formatRuntime(movieDetails.runtime)}
                   </span>
                 </p>
-                <p className="italic text-slate-900 text-xs my-2 md:text-base">
+                <p className="italic text-xs my-2 md:text-base">
                   {movieDetails.tagline}
                 </p>
               </div>
-              <div className="w-fit flex items-center bg-white rounded-md my-4 p-1 border-2 border-black">
+              <div className="w-fit h-fit flex items-center bg-white rounded-md my-4 p-1 border-2 border-black">
                 <p
                   className={`${colorStatus(
                     movieDetails.vote_average
@@ -96,7 +95,9 @@ const MovieDetails = ({
             </p>
             <p className="font-bold text-xs md:text-base">
               Overview:{" "}
-              <span className="font-normal">{movieDetails.overview || 'Not Available'}</span>
+              <span className="font-normal">
+                {movieDetails.overview || "Not Available"}
+              </span>
             </p>
           </div>
         </div>

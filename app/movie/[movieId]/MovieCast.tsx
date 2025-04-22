@@ -13,7 +13,7 @@ const MovieCast = ({ cast }: { cast: any }) => {
         height={175}
         priority={true}
       />
-      <div className="flex flex-col h-[100px] text-center bg-slate-200 *:text-xs *:md:text-base rounded-b-xl">
+      <div className="castbox flex flex-col p-2 w-[138px] h-[80px] md:h-[140px] text-center bg-slate-200 *:text-xs *:md:text-base rounded-b-xl">
       <p className="font-bold text-xs text-center md:text-base">{cast.name}</p>
       
       {splitCharacter.map((character: string, index: number) => (
