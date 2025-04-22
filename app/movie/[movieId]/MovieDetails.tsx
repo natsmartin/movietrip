@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import { formatDate } from "@sections/Details/Details";
+import MovieTrailer from "./MovieTrailer";
 import * as link from "@assets/links";
+import { MovieContext } from "./page";
 
 const formatRuntime = (time: number): string => {
   const formattedHour = (time / 60).toFixed() + "h";
@@ -11,11 +13,9 @@ const formatRuntime = (time: number): string => {
 
 const MovieDetails = ({
   movieDetails,
-  movieTrailer,
   movieCrew,
 }: {
   movieDetails: any;
-  movieTrailer: any;
   movieCrew: any;
 }) => {
   const formatRating = (rating: number): number => {
@@ -35,6 +35,8 @@ const MovieDetails = ({
     return `(${year.split(", ")[1]})`;
   };
 
+  const movieTrailer = useContext(MovieContext);
+
   return (
     <>
       {movieDetails ? (
@@ -52,21 +54,21 @@ const MovieDetails = ({
             priority={true}
           />
 
-          <div className="flex flex-col w-full md:mx-10">
+          <div className="flex flex-col w-full md:mx-10 [&_p]:text-xs [&_p]:md:text-base">
             <h1 className="w-full font-bold text-center text-xl my-1 md:text-left md:w-auto md:text-3xl">
               {movieDetails.title}
               {getYear()}
             </h1>
             <div className="flex justify-between md:inline">
               <div>
-                <p className="font-bold text-xs md:text-base">
+                <p className="font-bold">
                   Release date:{" "}
                   <span className="font-normal">
                     {formatDate(movieDetails.release_date)}
                   </span>
                 </p>
                 <div className="flex">
-                  <p className="font-bold text-xs *:inline-block w-[40vw] md:text-base">
+                  <p className="font-bold *:inline-block w-[40vw]">
                     Genre:&nbsp;
                     {movieDetails.genres.map(
                       (genre: { id: number; name: string }, index: number) => (
@@ -78,62 +80,32 @@ const MovieDetails = ({
                     )}
                   </p>
                 </div>
-                <p className="font-bold text-xs md:text-base">
+                <p className="font-bold">
                   Runtime:{" "}
                   <span className="font-normal">
                     {formatRuntime(movieDetails.runtime)}
                   </span>
                 </p>
-                <p className="italic text-xs my-2 md:text-base">
+                <p className="italic my-2">
                   {movieDetails.tagline}
                 </p>
               </div>
 
               <div className="flex flex-col md:flex mb-4 ml-4 md:ml-0">
                 <div className="w-fit h-fit flex items-center bg-white rounded-md my-4 p-1 border-2 border-black">
-                  <p
+                  <span
                     className={`${colorStatus(
                       movieDetails.vote_average
                     )} font-extrabold text-2xl md:text-3xl`}
                   >
                     {formatRating(movieDetails.vote_average)}%
-                  </p>
-                  <p className="text-black text-xs font-bold w-[40px] pl-1">
+                  </span>
+                  <p className="text-black text-xs font-bold w-min pl-1">
                     User Score
                   </p>
                 </div>
                 {movieTrailer ? (
-                  <div className={`${!movieTrailer.length ? "hidden" : ""}`}>
-                    <a
-                      href={`${link.movie_trailer}${movieTrailer[0]?.key}`}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <div
-                        className="flex items-center bg-red-500 w-fit font-bold text-white p-2 rounded-md
-                  hover:opacity-80"
-                      >
-                        <svg
-                          className="w-6 h-6 text-white"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 10 16"
-                        >
-                          <path
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="m2.707 14.293 5.586-5.586a1 1 0 0 0 0-1.414L2.707 1.707A1 1 0 0 0 1 2.414v11.172a1 1 0 0 0 1.707.707Z"
-                          />
-                        </svg>
-                        <p className="text-xs text-center md:text-base">
-                          Watch Trailer
-                        </p>
-                      </div>
-                    </a>
-                  </div>
+                  <MovieTrailer />
                 ) : null}
               </div>
             </div>

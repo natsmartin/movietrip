@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect, createContext, Suspense } from "react";
 import {
   fetchMovieDetails,
   fetchMovieCredits,
-  fetchMovieTrailer
+  fetchMovieTrailer,
 } from "@utils/actions/fetch-data";
 import Loading from "@app/loading";
 import MovieDetails from "./MovieDetails";
@@ -14,11 +14,14 @@ interface MovieIdType {
   movieId: string;
 }
 
+export const MovieContext = createContext([]);
+
 const MovieComponent = ({ params }: { params: MovieIdType }) => {
   const [movieDetails, setMovieDetails] = useState();
   const [movieCast, setMovieCast] = useState();
   const [movieCrew, setMovieCrew] = useState();
-  const [movieTrailer, setMovieTrailer] = useState();
+  const [movieTrailer, setMovieTrailer] = useState([]);
+
 
   useEffect(() => {
     const getMovie = async () => {
@@ -33,7 +36,7 @@ const MovieComponent = ({ params }: { params: MovieIdType }) => {
       setMovieCrew(filteredCrews);
       const trailer = await fetchMovieTrailer(params.movieId);
       setMovieTrailer(trailer);
-      console.log(trailer)
+      console.log(trailer);
     };
 
     if (!movieDetails || !movieCast || !movieCrew) {
@@ -42,15 +45,17 @@ const MovieComponent = ({ params }: { params: MovieIdType }) => {
   }, [movieCast, movieCrew, movieDetails, params.movieId]);
 
   return (
-    <div className="md:h-[100vh] h-max p-4 flex flex-col justify-center items-center">
-      <Suspense fallback={<Loading />}>
-        <MovieDetails 
-        movieDetails={movieDetails} 
-        movieTrailer={movieTrailer}
-        movieCrew={movieCrew} />
-        <MovieCredits movieCast={movieCast} />
-      </Suspense>
-    </div>
+    <MovieContext.Provider value={movieTrailer}>
+      <div className="md:h-[100vh] h-max p-4 flex flex-col justify-center items-center">
+        <Suspense fallback={<Loading />}>
+          <MovieDetails
+            movieDetails={movieDetails}
+            movieCrew={movieCrew}
+          />
+          <MovieCredits movieCast={movieCast} />
+        </Suspense>
+      </div>
+    </MovieContext.Provider>
   );
 };
 
