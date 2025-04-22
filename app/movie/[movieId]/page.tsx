@@ -4,6 +4,7 @@ import React, { useState, useEffect, Suspense } from "react";
 import {
   fetchMovieDetails,
   fetchMovieCredits,
+  fetchMovieTrailer
 } from "@utils/actions/fetch-data";
 import Loading from "@app/loading";
 import MovieDetails from "./MovieDetails";
@@ -17,6 +18,7 @@ const MovieComponent = ({ params }: { params: MovieIdType }) => {
   const [movieDetails, setMovieDetails] = useState();
   const [movieCast, setMovieCast] = useState();
   const [movieCrew, setMovieCrew] = useState();
+  const [movieTrailer, setMovieTrailer] = useState();
 
   useEffect(() => {
     const getMovie = async () => {
@@ -25,8 +27,13 @@ const MovieComponent = ({ params }: { params: MovieIdType }) => {
       const credits = await fetchMovieCredits(params.movieId);
       const filteredCasts = credits.cast.filter((cast: any) => cast.order < 16);
       setMovieCast(filteredCasts);
-      const filteredCrews = credits.crew.filter((crew: any) => crew.job === 'Director');
+      const filteredCrews = credits.crew.filter(
+        (crew: any) => crew.job === "Director"
+      );
       setMovieCrew(filteredCrews);
+      const trailer = await fetchMovieTrailer(params.movieId);
+      setMovieTrailer(trailer);
+      console.log(trailer)
     };
 
     if (!movieDetails || !movieCast || !movieCrew) {
@@ -37,7 +44,10 @@ const MovieComponent = ({ params }: { params: MovieIdType }) => {
   return (
     <div className="md:h-[100vh] h-max p-4 flex flex-col justify-center items-center">
       <Suspense fallback={<Loading />}>
-        <MovieDetails movieDetails={movieDetails} movieCrew={movieCrew}/>
+        <MovieDetails 
+        movieDetails={movieDetails} 
+        movieTrailer={movieTrailer}
+        movieCrew={movieCrew} />
         <MovieCredits movieCast={movieCast} />
       </Suspense>
     </div>
