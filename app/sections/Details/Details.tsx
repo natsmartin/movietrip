@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Movie } from "../MovieBox/MovieBox";
+import { movielist_poster, no_image } from "@assets/links";
 
 export const formatDate = (date: string) => {
   if (!date) {
@@ -29,8 +30,8 @@ export default function Details({ response }: { response: Movie }) {
       <Image
         src={
           response.poster_path
-            ? `https://media.themoviedb.org/t/p/w94_and_h141_bestv2${response.poster_path}`
-            : "https://demofree.sirv.com/nope-not-here.jpg"
+            ? `${movielist_poster}${response.poster_path}`
+            : `${no_image}`
         }
         alt={response.title}
         width={94}

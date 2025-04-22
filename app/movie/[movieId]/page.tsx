@@ -106,7 +106,7 @@ const MovieDetails = ({
             src={
               movieDetails.poster_path
                 ? `${link.moviebox_poster}${movieDetails.poster_path}`
-                : "https://demofree.sirv.com/nope-not-here.jpg"
+                : `${link.no_image}`
             }
             alt={movieDetails.title}
             width={300}
@@ -120,34 +120,32 @@ const MovieDetails = ({
               {getYear()}
             </h1>
             <div className="flex justify-between md:inline">
-              <div>
-                <p className="font-bold">
-                  Release date:{" "}
-                  <span className="font-normal">
-                    {formatDate(movieDetails.release_date)}
-                  </span>
-                </p>
-                <div className="flex">
-                  <p className="font-bold *:inline-block w-[40vw]">
-                    Genre:&nbsp;
-                    {movieDetails.genres.map(
-                      (genre: { id: number; name: string }, index: number) => (
-                        <span className="font-normal" key={index}>
-                          {genre.name}
-                          {index === movieDetails.genres.length - 1 ? "" : ","}
-                        </span>
-                      )
-                    )}
-                  </p>
-                </div>
-                <p className="font-bold">
-                  Runtime:{" "}
-                  <span className="font-normal">
-                    {formatRuntime(movieDetails.runtime)}
-                  </span>
-                </p>
-                <p className="italic my-2">{movieDetails.tagline}</p>
-              </div>
+              <p className="font-bold">
+                Release date:{" "}
+                <span className="font-normal">
+                  {formatDate(movieDetails.release_date)}
+                </span>
+              </p>
+
+              <p className="flex font-bold *:inline-block w-[40vw]">
+                Genre:&nbsp;
+                {movieDetails.genres.map(
+                  (genre: { id: number; name: string }, index: number) => (
+                    <span className="font-normal" key={index}>
+                      {genre.name}
+                      {index === movieDetails.genres.length - 1 ? "" : ","}
+                    </span>
+                  )
+                )}
+              </p>
+
+              <p className="font-bold">
+                Runtime:{" "}
+                <span className="font-normal">
+                  {formatRuntime(movieDetails.runtime)}
+                </span>
+              </p>
+              <p className="italic my-2">{movieDetails.tagline}</p>
 
               <div className="flex flex-col md:flex mb-4 ml-4 md:ml-0">
                 <div className="w-fit h-fit flex items-center bg-white rounded-md my-4 p-1 border-2 border-black">
@@ -196,7 +194,7 @@ const MovieTrailer = () => {
       >
         <div
           className="flex items-center bg-red-500 w-fit font-bold text-white p-2 rounded-md
-                      hover:opacity-80"
+            hover:opacity-80"
         >
           <svg
             className="w-6 h-6 text-white"
