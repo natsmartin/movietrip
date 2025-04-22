@@ -1,27 +1,40 @@
 "use client";
 
-import React, { useState, useEffect, createContext, Suspense } from "react";
+import React, {
+  useState,
+  useEffect,
+  createContext,
+  Suspense,
+  useContext,
+} from "react";
 import {
   fetchMovieDetails,
   fetchMovieCredits,
   fetchMovieTrailer,
 } from "@utils/actions/fetch-data";
+import Image from "next/image";
 import Loading from "@app/loading";
-import MovieDetails from "./MovieDetails";
 import MovieCredits from "./MovieCredits";
+import * as link from "@assets/links";
+import { formatDate } from "@app/sections/Details/Details";
 
 interface MovieIdType {
   movieId: string;
 }
 
-export const MovieContext = createContext([]);
+const MovieContext = createContext([]);
+
+const formatRuntime = (time: number): string => {
+  const formattedHour = (time / 60).toFixed() + "h";
+  const formattedMins = (time % 60) + "m";
+  return formattedHour.concat(" ", formattedMins);
+};
 
 const MovieComponent = ({ params }: { params: MovieIdType }) => {
   const [movieDetails, setMovieDetails] = useState();
   const [movieCast, setMovieCast] = useState();
   const [movieCrew, setMovieCrew] = useState();
   const [movieTrailer, setMovieTrailer] = useState([]);
-
 
   useEffect(() => {
     const getMovie = async () => {
@@ -48,10 +61,7 @@ const MovieComponent = ({ params }: { params: MovieIdType }) => {
     <MovieContext.Provider value={movieTrailer}>
       <div className="md:h-[100vh] h-max p-4 flex flex-col justify-center items-center">
         <Suspense fallback={<Loading />}>
-          <MovieDetails
-            movieDetails={movieDetails}
-            movieCrew={movieCrew}
-          />
+          <MovieDetails movieDetails={movieDetails} movieCrew={movieCrew} />
           <MovieCredits movieCast={movieCast} />
         </Suspense>
       </div>
@@ -60,3 +70,152 @@ const MovieComponent = ({ params }: { params: MovieIdType }) => {
 };
 
 export default MovieComponent;
+
+const MovieDetails = ({
+  movieDetails,
+  movieCrew,
+}: {
+  movieDetails: any;
+  movieCrew: any;
+}) => {
+  const formatRating = (rating: number): number => {
+    return Number((rating * 10).toFixed());
+  };
+
+  const colorStatus = (rating: number): string => {
+    if (formatRating(rating) > 70) {
+      return "text-green-700";
+    }
+    return "text-red-700";
+  };
+
+  const getYear = (): string | null => {
+    let year = formatDate(movieDetails.release_date);
+    if (!year) return null;
+    return `(${year.split(", ")[1]})`;
+  };
+
+  const trailer = useContext<any>(MovieContext);
+
+  return (
+    <>
+      {movieDetails ? (
+        <div className="flex flex-col w-[80vw] my-4 md:flex-row [&_p]:py-1">
+          <Image
+            className="h-fit shadow-3xl rounded-xl"
+            src={
+              movieDetails.poster_path
+                ? `${link.moviebox_poster}${movieDetails.poster_path}`
+                : "https://demofree.sirv.com/nope-not-here.jpg"
+            }
+            alt={movieDetails.title}
+            width={300}
+            height={450}
+            priority={true}
+          />
+
+          <div className="flex flex-col w-full md:mx-10 [&_p]:text-xs [&_p]:md:text-base">
+            <h1 className="w-full font-bold text-center text-xl my-1 md:text-left md:w-auto md:text-3xl">
+              {movieDetails.title}
+              {getYear()}
+            </h1>
+            <div className="flex justify-between md:inline">
+              <div>
+                <p className="font-bold">
+                  Release date:{" "}
+                  <span className="font-normal">
+                    {formatDate(movieDetails.release_date)}
+                  </span>
+                </p>
+                <div className="flex">
+                  <p className="font-bold *:inline-block w-[40vw]">
+                    Genre:&nbsp;
+                    {movieDetails.genres.map(
+                      (genre: { id: number; name: string }, index: number) => (
+                        <span className="font-normal" key={index}>
+                          {genre.name}
+                          {index === movieDetails.genres.length - 1 ? "" : ","}
+                        </span>
+                      )
+                    )}
+                  </p>
+                </div>
+                <p className="font-bold">
+                  Runtime:{" "}
+                  <span className="font-normal">
+                    {formatRuntime(movieDetails.runtime)}
+                  </span>
+                </p>
+                <p className="italic my-2">{movieDetails.tagline}</p>
+              </div>
+
+              <div className="flex flex-col md:flex mb-4 ml-4 md:ml-0">
+                <div className="w-fit h-fit flex items-center bg-white rounded-md my-4 p-1 border-2 border-black">
+                  <span
+                    className={`${colorStatus(
+                      movieDetails.vote_average
+                    )} font-extrabold text-2xl md:text-3xl`}
+                  >
+                    {formatRating(movieDetails.vote_average)}%
+                  </span>
+                  <p className="text-black text-xs font-bold w-min pl-1">
+                    User Score
+                  </p>
+                </div>
+                {trailer ? <MovieTrailer /> : null}
+              </div>
+            </div>
+            <p className="font-bold text-xs md:text-base">
+              Director:{" "}
+              <span className="font-normal">
+                {movieCrew ? movieCrew[0].name : null}
+              </span>
+            </p>
+            <p className="font-bold text-xs md:text-base">
+              Overview:{" "}
+              <span className="font-normal">
+                {movieDetails.overview || "Not Available"}
+              </span>
+            </p>
+          </div>
+        </div>
+      ) : null}
+    </>
+  );
+};
+
+const MovieTrailer = () => {
+  const trailer = useContext<any>(MovieContext);
+
+  return (
+    <div className={`${!trailer.length ? "hidden" : ""}`}>
+      <a
+        href={`${link.movie_trailer}${trailer[0]?.key}`}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <div
+          className="flex items-center bg-red-500 w-fit font-bold text-white p-2 rounded-md
+                      hover:opacity-80"
+        >
+          <svg
+            className="w-6 h-6 text-white"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 10 16"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m2.707 14.293 5.586-5.586a1 1 0 0 0 0-1.414L2.707 1.707A1 1 0 0 0 1 2.414v11.172a1 1 0 0 0 1.707.707Z"
+            />
+          </svg>
+          <p className="text-xs text-center md:text-base">Watch Trailer</p>
+        </div>
+      </a>
+    </div>
+  );
+};
