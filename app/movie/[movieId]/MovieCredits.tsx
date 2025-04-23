@@ -4,7 +4,7 @@ import MovieCast from "./MovieCast";
 const MovieCredits = ({ movieCast }: { movieCast: any }) => {
   return (
     <>
-      {movieCast ? (
+      {movieCast.length ? (
         <div className="flex flex-col w-[100vw] my-4">
           <h2 className="w-full font-bold text-center text-base py-2 md:text-xl">
             Casts

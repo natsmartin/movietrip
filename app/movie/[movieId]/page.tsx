@@ -11,6 +11,7 @@ import {
   fetchMovieDetails,
   fetchMovieCredits,
   fetchMovieTrailer,
+  MyObject,
 } from "@utils/actions/fetch-data";
 import Image from "next/image";
 import Loading from "@app/loading";
@@ -22,7 +23,7 @@ interface MovieIdType {
   movieId: string;
 }
 
-const MovieContext = createContext([]);
+const MovieContext = createContext<never[] | MyObject[]>([]);
 
 const formatRuntime = (time: number): string => {
   const formattedHour = (time / 60).toFixed() + "h";
@@ -32,24 +33,23 @@ const formatRuntime = (time: number): string => {
 
 const MovieComponent = ({ params }: { params: MovieIdType }) => {
   const [movieDetails, setMovieDetails] = useState();
-  const [movieCast, setMovieCast] = useState();
-  const [movieCrew, setMovieCrew] = useState();
-  const [movieTrailer, setMovieTrailer] = useState([]);
+  const [movieCast, setMovieCast] = useState<never[] | MyObject[]>([]);
+  const [movieCrew, setMovieCrew] = useState<never[] | MyObject[]>([]);
+  const [movieTrailer, setMovieTrailer] = useState<never[] | MyObject[]>([]);
 
   useEffect(() => {
     const getMovie = async () => {
       const details = await fetchMovieDetails(params.movieId);
       setMovieDetails(details);
       const credits = await fetchMovieCredits(params.movieId);
-      const filteredCasts = credits.cast.filter((cast: any) => cast.order < 16);
+      const filteredCasts: never[] | MyObject[] = credits.cast.filter((cast: any) => cast.order < 16);
       setMovieCast(filteredCasts);
-      const filteredCrews = credits.crew.filter(
+      const filteredCrews: never[] | MyObject[] = credits.crew.filter(
         (crew: any) => crew.job === "Director"
       );
       setMovieCrew(filteredCrews);
       const trailer = await fetchMovieTrailer(params.movieId);
       setMovieTrailer(trailer);
-      console.log(trailer);
     };
 
     if (!movieDetails || !movieCast || !movieCrew) {
@@ -89,8 +89,8 @@ const MovieDetails = ({
     return "text-red-700";
   };
 
-  const getYear = (): string | null => {
-    let year = formatDate(movieDetails.release_date);
+  const getYear = (date: string): string | null => {
+    let year = formatDate(date);
     if (!year) return null;
     return `(${year.split(", ")[1]})`;
   };
@@ -117,7 +117,7 @@ const MovieDetails = ({
           <div className="flex flex-col w-full md:mx-10 [&_p]:text-xs [&_p]:md:text-base">
             <h1 className="w-full font-bold text-center text-xl my-1 md:text-left md:w-auto md:text-3xl">
               {movieDetails.title}
-              {getYear()}
+              {getYear(movieDetails.release_date)}
             </h1>
 
             <div className="flex md:flex-col">
@@ -170,7 +170,7 @@ const MovieDetails = ({
             <p className="font-bold text-xs md:text-base">
               Director:{" "}
               <span className="font-normal">
-                {movieCrew ? movieCrew[0].name : null}
+                {movieCrew.length ? movieCrew[0].name : null}
               </span>
             </p>
             <p className="font-bold text-xs md:text-base">
