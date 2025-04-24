@@ -26,7 +26,7 @@ interface MovieIdType {
 const MovieContext = createContext<never[] | MyObject[]>([]);
 
 const formatRuntime = (time: number): string => {
-  const formattedHour = (time / 60).toFixed() + "h";
+  const formattedHour = Math.floor(time / 60) + "h";
   const formattedMins = (time % 60) + "m";
   return formattedHour.concat(" ", formattedMins);
 };
