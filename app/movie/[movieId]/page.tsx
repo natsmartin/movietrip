@@ -83,7 +83,7 @@ const MovieDetails = ({
   };
 
   const colorStatus = (rating: number): string => {
-    if (formatRating(rating) > 70) {
+    if (formatRating(rating) > 50) {
       return "text-green-700";
     }
     return "text-red-700";
