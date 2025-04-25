@@ -21,6 +21,15 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
+    --foreground-rgb-shadow: 255, 255, 255, 0.5;
+  }
+
+  .cast-card {
+    box-shadow: 5px 10px 10px rgb(var(--foreground-rgb-shadow))
+  }
+  
+  .poster-details-box {
+    box-shadow: 10px 10px 10px rgb(var(--foreground-rgb-shadow))
   }
 }
 

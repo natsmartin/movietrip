@@ -60,8 +60,8 @@ export default function Search() {
                         <p className='m-6'>Please enter a movie title.</p>
                     </div>
                 </div>
-                <form onSubmit={handleSubmit} className='flex w-full md:w-[950px] justify-center items-center'>
-                    <div className='flex justify-center w-[80%] lg:w-[50%]'>
+                <form onSubmit={handleSubmit} className='flex flex-col w-full justify-center items-center'>
+                    <div className='md:flex contents justify-center w-fit lg:w-[50%]'>
                         <input id='title-input' type='text' name='title' required
                             className='input-title-clamp dark:text-black rounded p-1 text-xs m-2 md:mx-4 md:text-base'
                             placeholder='Search for title' maxLength={100}

@@ -59,7 +59,7 @@ const MovieComponent = ({ params }: { params: MovieIdType }) => {
 
   return (
     <MovieContext.Provider value={movieTrailer}>
-      <div className="md:h-[100vh] h-max p-4 flex flex-col justify-center items-center">
+      <div className="h-max p-4 flex flex-col justify-center items-center overflow-x-hidden">
         <Suspense fallback={<Loading />}>
           <MovieDetails movieDetails={movieDetails} movieCrew={movieCrew} />
           <MovieCredits movieCast={movieCast} />
@@ -102,7 +102,7 @@ const MovieDetails = ({
       {movieDetails ? (
         <div className="flex flex-col w-[80vw] my-4 md:flex-row [&_p]:py-1">
           <Image
-            className="h-fit shadow-3xl rounded-xl"
+            className="poster-details-box h-fit shadow-[10px_10px_10px_rgb(0,0,0,0.5)] rounded-xl"
             src={
               movieDetails.poster_path
                 ? `${link.moviebox_poster}${movieDetails.poster_path}`

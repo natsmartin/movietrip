@@ -5,12 +5,12 @@ const MovieCredits = ({ movieCast }: { movieCast: any }) => {
   return (
     <>
       {movieCast.length ? (
-        <div className="flex flex-col w-[100vw] my-4">
+        <div className="flex flex-col w-[100vw] px-14 my-4">
           <h2 className="w-full font-bold text-center text-base py-2 md:text-xl">
             Casts
           </h2>
           <div
-            className={`flex overflow-x-scroll *:mx-1 *:my-3 ${
+            className={`flex overflow-x-scroll *:mx-1 *:my-3 pb-4 ${
               movieCast.length < 11 ? "md:justify-center md:overflow-hidden" : ""
             }`}
           >
