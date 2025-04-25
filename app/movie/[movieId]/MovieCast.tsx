@@ -5,9 +5,11 @@ import { movie_cast } from "@assets/links";
 const MovieCast = ({ cast }: { cast: any }) => {
   const splitCharacter = cast.character.split("/");
   return (
-    <div className="min-w-max shadow-[5px_10px_10px_rgb(0,0,0,0.5)] cast-card rounded-xl">
+    <div className="flex md:flex-col min-w-max shadow-[0px_10px_10px_rgb(0,0,0,0.5)]
+      cast-card rounded-xl">
       <Image
-        className="rounded-t-xl"
+        className="w-[20vw] h-auto rounded-tl-xl rounded-bl-xl
+        md:w-[-webkit-fill-available] md:h-auto md:rounded-t-xl md:rounded-bl-none"
         src={`${movie_cast}${cast.profile_path}`}
         alt={cast.name}
         width={138}
@@ -15,8 +17,9 @@ const MovieCast = ({ cast }: { cast: any }) => {
         priority={true}
       />
       <div
-        className="flex flex-col p-2 w-[138px] h-[80px] text-center bg-slate-200 
-          md:h-[140px] *:text-xs *:md:text-base rounded-b-xl"
+        className="flex flex-col p-2 w-[138px] h-auto text-center bg-slate-200 
+          rounded-tr-xl rounded-br-xl justify-center md:justify-start
+          md:h-[140px] *:text-xs *:md:text-base md:rounded-b-xl"
       >
         <p className="font-bold text-xs text-center md:text-base">
           {cast.name}

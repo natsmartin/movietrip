@@ -114,7 +114,7 @@ const MovieDetails = ({
             priority={true}
           />
 
-          <div className="flex flex-col w-full md:mx-10 [&_p]:text-xs [&_p]:md:text-base">
+          <div className="flex flex-col w-full mt-2 md:mt-0 md:mx-10 [&_p]:text-xs [&_p]:md:text-base">
             <h1 className="w-full font-bold text-center text-xl my-1 md:text-left md:w-auto md:text-3xl">
               {movieDetails.title}
               {getYear(movieDetails.release_date)}
