@@ -5,11 +5,18 @@ import { movie_cast } from "@assets/links";
 const MovieCast = ({ cast }: { cast: any }) => {
   const splitCharacter = cast.character.split("/");
   return (
-    <div className="flex md:flex-col min-w-max shadow-[0px_10px_10px_rgb(0,0,0,0.5)]
-      cast-card rounded-xl">
+    <div
+      className="flex md:flex-col min-w-max shadow-[0px_10px_10px_rgb(0,0,0,0.5)]
+      cast-card rounded-xl"
+    >
       <Image
-        className="w-[20vw] h-auto rounded-tl-xl rounded-bl-xl
-        md:w-[-webkit-fill-available] md:h-auto md:rounded-t-xl md:rounded-bl-none"
+        className={`w-[20vw] h-auto rounded-tl-xl rounded-bl-xl
+        ${
+          cast.profile_path
+            ? "md:w-[-webkit-fill-available] md:h-auto"
+            : "md:w-min md:h-[175px]"
+        } 
+        md:rounded-t-xl md:rounded-bl-none`}
         src={`${movie_cast}${cast.profile_path}`}
         alt={cast.name}
         width={138}
