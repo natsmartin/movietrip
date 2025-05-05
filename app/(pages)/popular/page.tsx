@@ -17,8 +17,8 @@ const Popular = () => {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col justify-evenly md:items-center pt-8 md:p-16">
-      <MovieList movieList={popular} />
+    <div className="flex min-h-screen flex-col justify-evenly pt-8 md:p-16">
+      <MovieList movieList={popular} label={'Popular Movies'}/>
     </div>
   );
 };

@@ -1,30 +1,40 @@
-import React from 'react'
-import { usePathname } from 'next/navigation'
-import Link from 'next/link'
+"use client";
+
+import React from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import clsx from "clsx";
 
 const links = [
-  { name: 'Home', href: '/' },
-  { name: 'Popular', href: '/popular' },
-  { name: 'Top Rated', href: '/top_rated' },
-  { name: 'Upcoming', href: '/upcoming' },
-]
+  { name: "Home", href: "/" },
+  { name: "Popular", href: "/popular" },
+  { name: "Top Rated", href: "/top_rated" },
+  { name: "Upcoming", href: "/upcoming" },
+];
 
 const NavLinks = () => {
-  return (
-    <div className='flex justify-center items-center *:w-[150px] *:text-center
-    *:p-4 *:m-1 *:bg-gray-800 *:text-white *:rounded-lg'>
-      {
-        links.map(link => 
-          <Link 
-          title={link.name}
-          key={link.name}
-          href={link.href}>
-            {link.name}
-          </Link>
-        )
-      }
-    </div>
-  )
-}
+  const pathname = usePathname();
 
-export default NavLinks
+  return (
+    <div
+      className="flex justify-center items-center flex-wrap my-2 *:w-[100px]
+       md:flex-row *:md:w-[150px] *:text-center *:font-bold
+       *:p-4 *:m-[1px] *:text-white *:rounded-lg"
+    >
+      {links.map((link) => (
+        <Link
+          title={link.name}
+          className={clsx(`md:text-base text-xs bg-gray-800 hover:bg-gray-600`, {
+           "bg-gray-600": pathname === link.href,
+          })}
+          key={link.name}
+          href={link.href}
+        >
+          {link.name}
+        </Link>
+      ))}
+    </div>
+  );
+};
+
+export default NavLinks;

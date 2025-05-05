@@ -19,7 +19,7 @@ const TopRated = () => {
 
   return (
     <div className="flex min-h-screen flex-col justify-evenly md:items-center pt-8 md:p-16">
-      <MovieList movieList={topRated} />
+      <MovieList movieList={topRated} label={'Top Rated Movies'}/>
     </div>
   )
 }

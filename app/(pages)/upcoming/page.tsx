@@ -18,7 +18,7 @@ const Upcoming = () => {
       }, []);
   return (
     <div className="flex min-h-screen flex-col justify-evenly md:items-center pt-8 md:p-16">
-      <MovieList movieList={upcoming} />
+      <MovieList movieList={upcoming} label={'Upcoming Movies'}/>
     </div>
   );
 };
