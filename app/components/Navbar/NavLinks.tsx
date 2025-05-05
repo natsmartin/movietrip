@@ -12,7 +12,7 @@ const links = [
 const NavLinks = () => {
   return (
     <div className='flex justify-center items-center *:w-[150px] *:text-center
-    *:p-4 *:m-1 *:bg-black *:text-white *:rounded-lg'>
+    *:p-4 *:m-1 *:bg-gray-800 *:text-white *:rounded-lg'>
       {
         links.map(link => 
           <Link 
