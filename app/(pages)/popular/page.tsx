@@ -1,25 +1,10 @@
-'use client'
-
-import React, { useState, useEffect } from "react";
-import { fetchMovieList } from "@utils/actions/fetch-data";
-import MovieList from "@app/sections/MovieList/MovieList";
+import React from "react";
+import MovieFilter from "@app/components/MovieFilter/MovieFilter";
 
 const Popular = () => {
-  const [popular, setPopular] = useState();
-
-  useEffect(() => {
-    const getPopular = async () => {
-      const response = await fetchMovieList('popular');
-      setPopular(response.results)
-    }
-
-    getPopular();
-  }, []);
 
   return (
-    <div className="flex min-h-screen flex-col justify-evenly pt-8 md:p-16">
-      <MovieList movieList={popular} label={'Popular Movies'}/>
-    </div>
+    <MovieFilter filter={"popular"} heading={"Popular Movies"}/>
   );
 };
 

@@ -77,7 +77,7 @@ export default function Search() {
                 </form>
             </div>
             <Suspense fallback={<Loading />} >
-                <MovieList movieList={movieList} label={null}/>
+                <MovieList movieList={movieList}/>
             </Suspense>
         </>
 
