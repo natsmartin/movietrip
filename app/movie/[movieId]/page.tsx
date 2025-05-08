@@ -63,7 +63,7 @@ const MovieComponent = ({ params }: { params: MovieIdType }) => {
 
   return (
     <MovieContext.Provider value={movieTrailer}>
-      <div className="h-max py-4 flex flex-col justify-center items-center overflow-x-hidden">
+      <div className="h-[100vw] py-4 flex flex-col justify-start items-center overflow-x-hidden">
         <Suspense fallback={<Loading />}>
           <MovieDetails movieDetails={movieDetails} movieCrew={movieCrew} />
           <MovieCredits movieCast={movieCast} />
@@ -104,7 +104,7 @@ const MovieDetails = ({
       {movieDetails ? (
         <div
           className="flex flex-col w-[100vw] my-4 bg-white p-8 items-center text-black
-         md:w-[95vw] md:flex-row md:items-start [&_p]:py-1"
+         md:w-[1250px] md:flex-row md:items-start [&_p]:py-1"
         >
           <Image
             className="poster-details-box h-fit shadow-[10px_10px_10px_rgb(0,0,0,0.5)] rounded-xl 
@@ -120,7 +120,7 @@ const MovieDetails = ({
             priority={true}
           />
 
-          <div className="flex flex-col w-full mt-2 md:mt-0 md:mx-10 [&_p]:text-xs [&_p]:md:text-base">
+          <div className="flex flex-col w-[650px] mt-2 md:mt-0 md:mx-10 [&_p]:text-xs [&_p]:md:text-base">
             <h1 className="w-full font-bold text-center text-xl my-1 md:text-left md:w-auto md:text-3xl">
               {movieDetails.title}
               ({getYear(movieDetails.release_date)})

@@ -23,13 +23,14 @@ const PersonComponent = ({ params }: { params: PersonIdType }) => {
   const [personDetails, setPersonDetails] = useState<PersonDetailsType>();
   const [movies, setMovies] = useState();
 
+  const biography = personDetails?.biography.split("\n\n");
 
   useEffect(() => {
     const getPerson = async () => {
       const details = await fetchPerson(params.personId);
       setPersonDetails(details);
       console.log(details);
-      const movieList = await fetchPersonMovieCredits(params.personId)
+      const movieList = await fetchPersonMovieCredits(params.personId);
       setMovies(movieList);
       console.log(movieList);
     };
@@ -39,10 +40,30 @@ const PersonComponent = ({ params }: { params: PersonIdType }) => {
   }, [personDetails, params.personId]);
 
   return (
-    <div className="h-max py-4 flex flex-col">
+    <div className="min-h-screen py-4 flex flex-col justify-center items-start md:flex-row">
       <Suspense fallback={<Loading />}>
         <PersonInfo personDetails={personDetails} />
-        <MovieCredits movies={movies} />
+        <div className="flex flex-col md:py-10 md:w-[650px] md:mt-0 md:px-10 [&_p]:text-xs [&_p]:md:text-base">
+          {personDetails ? (
+            <div className="bg-white dark:text-black p-0 md:p-8">
+              <Name personDetails={personDetails} className="hidden md:flex" />
+              <div className="hidden md:block">
+                <h2 className="font-semibold text-base mt-4 md:text-xl">
+                  Biography
+                </h2>
+                {biography.map((paragraph: string, index: number) => (
+                  <>
+                    <p className="font-light" key={index}>
+                      {paragraph}
+                    </p>
+                    <br />
+                  </>
+                ))}
+              </div>
+            </div>
+          ) : null}
+          <MovieCredits movies={movies} />
+        </div>
       </Suspense>
     </div>
   );
@@ -55,7 +76,7 @@ const PersonInfo = ({
 }: {
   personDetails: PersonDetailsType | undefined;
 }) => {
-  const biography = personDetails?.biography.split("\n\n");
+
   const formatGender = (gender: number): string | undefined => {
     let value;
     switch (gender) {
@@ -77,14 +98,14 @@ const PersonInfo = ({
   return (
     <>
       {personDetails ? (
-        <div className="md:flex-row flex flex-col bg-white">
+        <div className="justify-center flex flex-col">
           <div
-            className="flex flex-col w-auto p-4 my-4 bg-white pt-8 items-center text-black
-              md:w-[25vw] [&_p]:py-1"
+            className="flex flex-col p-4 my-4 pt-8 text-black
+              md:w-[330px] [&_p]:py-1 [&_p]:px-4 [&_p]:md:px-0"
           >
             <Image
-              className="poster-details-box h-fit mb-4 w-[100dvh] shadow-[10px_10px_10px_rgb(0,0,0,0.5)] rounded-xl 
-                 md:w-[30dvh]"
+              className="poster-details-box h-fit mb-4 shadow-[10px_10px_10px_rgb(0,0,0,0.5)] rounded-xl 
+                 md:w-[300px]"
               src={
                 personDetails.profile_path
                   ? `${link.moviebox_poster}${personDetails.profile_path}`
@@ -96,7 +117,7 @@ const PersonInfo = ({
               priority={true}
             />
 
-            <div className="w-auto px-0 md:w-[25vw] md:px-16 [&_p]:pb-4 [&_p]:text-xs [&_p]:md:text-base">
+            <div className="w-auto px-0 dark:text-white md:w-[300px] md:px-8 [&_p]:py-2 [&_p]:text-xs [&_p]:md:text-base">
               <Name personDetails={personDetails} className="md:hidden" />
               <p className="font-bold">
                 Also Known As: <br />
@@ -132,22 +153,6 @@ const PersonInfo = ({
             </div>
           </div>
 
-          <div className="flex flex-col mt-2 pt-8 md:mt-0 md:mx-10 [&_p]:text-xs [&_p]:md:text-base">
-            <Name personDetails={personDetails} className="hidden md:flex" />
-            <div className="hidden md:block">
-              <h2 className="font-semibold text-base mt-4 md:text-xl">
-                Biography
-              </h2>
-              {biography.map((paragraph: string, index: number) => (
-                <>
-                  <p className="font-light" key={index}>
-                    {paragraph}
-                  </p>
-                  <br />
-                </>
-              ))}
-            </div>
-          </div>
         </div>
       ) : null}
     </>

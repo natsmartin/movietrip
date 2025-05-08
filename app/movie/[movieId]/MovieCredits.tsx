@@ -10,10 +10,9 @@ const MovieCredits = ({ movieCast }: { movieCast: any }) => {
             Top Casts
           </h2>
           <div
-            className={`flex flex-col w-max place-self-center h-[50vh] overflow-y-scroll md:overflow-y-hidden px-0 py-1 bg-white 
-              md:overflow-x-scroll md:place-self-auto md:h-auto md:w-auto md:flex-row *:mx-1 *:my-3
-              ${movieCast.length < 11 ? "md:justify-center md:overflow-hidden" : ""
-            }`}
+            className={`flex flex-col w-max place-self-center h-[50vh] overflow-y-scroll md:overflow-y-hidden px-4 py-1 bg-white 
+              md:overflow-x-scroll md:h-auto md:w-[1250px] md:flex-row *:mx-1 *:my-3
+            `}
           >
             {movieCast.map((cast: any, index: number) => (
               <MovieCast key={index} cast={cast} />
