@@ -25,7 +25,7 @@ const NavLinks = () => {
         <Link
           title={link.name}
           className={clsx(`md:text-base text-xs bg-gray-800 hover:bg-gray-600`, {
-           "bg-gray-600": pathname === link.href,
+           "bg-gray-600 focus:bg-gray-600": pathname === link.href,
           })}
           key={link.name}
           href={link.href}

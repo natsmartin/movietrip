@@ -4,16 +4,16 @@ import { Movie } from "@sections/MovieBox/MovieBox";
 
 type MovieListType = Movie[];
 
-const MovieList = ({
-  movieList
-}: {
-  movieList: MovieListType | any;
-}) => {
+const MovieList = ({ movieList }: { movieList: MovieListType | any }) => {
   return (
     <div className="flex flex-col items-center">
-      {movieList?.map((movie: Movie, index: number) => (
-        <MovieBox key={index} movie={movie} />
-      ))}
+      {movieList?.length !== 0 ? (
+        movieList?.map((movie: Movie, index: number) => (
+          <MovieBox key={index} movie={movie} />
+        ))
+      ) : (
+        <p id="no-results">No results found.</p>
+      )}
     </div>
   );
 };
