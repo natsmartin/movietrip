@@ -18,6 +18,8 @@ import Loading from "@app/loading";
 import MovieCredits from "./MovieCredits";
 import * as link from "@assets/links";
 import { formatDate } from "@app/sections/Details/Details";
+import ModalVideo from "react-modal-video";
+// import { Grow } from "@mui/material";
 
 interface MovieIdType {
   movieId: string;
@@ -42,7 +44,9 @@ const MovieComponent = ({ params }: { params: MovieIdType }) => {
       const details = await fetchMovieDetails(params.movieId);
       setMovieDetails(details);
       const credits = await fetchMovieCredits(params.movieId);
-      const filteredCasts: never[] | MyObject[] = credits.cast.filter((cast: any) => cast.order < 16);
+      const filteredCasts: never[] | MyObject[] = credits.cast.filter(
+        (cast: any) => cast.order < 16
+      );
       setMovieCast(filteredCasts);
       const filteredCrews: never[] | MyObject[] = credits.crew.filter(
         (crew: any) => crew.job === "Director"
@@ -100,8 +104,10 @@ const MovieDetails = ({
   return (
     <>
       {movieDetails ? (
-        <div className="flex flex-col w-[100vw] my-4 bg-white p-8 items-center text-black
-         md:w-[95vw] md:flex-row md:items-start [&_p]:py-1">
+        <div
+          className="flex flex-col w-[100vw] my-4 bg-white p-8 items-center text-black
+         md:w-[95vw] md:flex-row md:items-start [&_p]:py-1"
+        >
           <Image
             className="poster-details-box h-fit shadow-[10px_10px_10px_rgb(0,0,0,0.5)] rounded-xl 
              md:w-[50dvh]"
@@ -191,15 +197,33 @@ const MovieDetails = ({
 const MovieTrailer = () => {
   const trailer = useContext<any>(MovieContext);
 
+  const [isOpen, setOpen] = useState(false);
+
   return (
-    <div className={`${!trailer.length ? "hidden" : ""}`}>
-      <a
-        href={`${link.movie_trailer}${trailer[0]?.key}`}
-        target="_blank"
-        rel="noreferrer"
-      >
-        <div
-          className="flex items-center bg-red-500 w-fit font-bold text-white p-2 rounded-md
+    <>
+      <div className={isOpen ? 'modal-video [&_iframe]:w-[320px] [&_iframe]:md:w-[100dvh] [&_iframe]:md:h-[50dvw]' : 'hidden'}>
+        <ModalVideo
+          classNames={{
+            modalVideo: "modal-video",
+            modalVideoClose: "modal-video-close",
+            modalVideoBody: "modal-video-body",
+            modalVideoInner: "modal-video-inner",
+            modalVideoIframeWrap: "modal-video-movie-wrap",
+            modalVideoCloseBtn: "modal-video-close-btn",
+            modalVideoEffect: "modal-video-effect",
+          }}
+          channel="youtube"
+          youtube={{ mute: 1, autoplay: 1 }}
+          isOpen={isOpen}
+          videoId={trailer[0]?.key}
+          onClose={() => setOpen(false)}
+        />
+      </div>
+
+      <div className={`${!trailer.length ? "hidden" : ""}`}>
+        <button
+          onClick={() => setOpen(true)}
+          className="flex items-center bg-red-500 w-fit font-bold text-white p-2 rounded-md text-xs text-center md:text-base
             hover:opacity-80"
         >
           <svg
@@ -217,9 +241,9 @@ const MovieTrailer = () => {
               d="m2.707 14.293 5.586-5.586a1 1 0 0 0 0-1.414L2.707 1.707A1 1 0 0 0 1 2.414v11.172a1 1 0 0 0 1.707.707Z"
             />
           </svg>
-          <p className="text-xs text-center md:text-base">Watch Trailer</p>
-        </div>
-      </a>
-    </div>
+          Watch Trailer
+        </button>
+      </div>
+    </>
   );
 };

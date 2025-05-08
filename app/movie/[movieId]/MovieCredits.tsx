@@ -10,7 +10,7 @@ const MovieCredits = ({ movieCast }: { movieCast: any }) => {
             Top Casts
           </h2>
           <div
-            className={`flex flex-col w-max place-self-center h-[50vh] overflow-y-scroll md:overflow-y-hidden p-1 bg-white 
+            className={`flex flex-col w-max place-self-center h-[50vh] overflow-y-scroll md:overflow-y-hidden px-0 py-1 bg-white 
               md:overflow-x-scroll md:place-self-auto md:h-auto md:w-auto md:flex-row *:mx-1 *:my-3
               ${movieCast.length < 11 ? "md:justify-center md:overflow-hidden" : ""
             }`}
