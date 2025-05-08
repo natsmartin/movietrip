@@ -62,5 +62,21 @@ export const fetchPersonMovieCredits = async (id: string) => {
     `${baseURL}/person/${id}/movie_credits?api_key=${process.env.API_KEY}`
   );
   const json = await response.json();
-  return await json.cast.filter((cast: MyObject) => Number(formatDate(cast.release_date).split(", ")[1]) > 2010 && cast.vote_count > 800);
+  return await json.cast
+    .filter(
+      (cast: MyObject) =>
+        getYear(cast.release_date) > 2010 &&
+        cast.vote_count > 800
+    )
+    .sort(
+      (a: any, b: any) =>
+        getYear(b.release_date) -
+        getYear(a.release_date)
+    );
 };
+
+export const getYear = (date: string): number | any => {
+  let year = Number(formatDate(date).split(', ')[1]);
+  if (!year) return null;
+  return year;
+}

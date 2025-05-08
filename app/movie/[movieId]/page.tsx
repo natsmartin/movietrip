@@ -12,6 +12,7 @@ import {
   fetchMovieCredits,
   fetchMovieTrailer,
   MyObject,
+  getYear,
 } from "@utils/actions/fetch-data";
 import Image from "next/image";
 import Loading from "@app/loading";
@@ -93,12 +94,6 @@ const MovieDetails = ({
     return "text-red-700";
   };
 
-  const getYear = (date: string): string | null => {
-    let year = formatDate(date);
-    if (!year) return null;
-    return `(${year.split(", ")[1]})`;
-  };
-
   const trailer = useContext<any>(MovieContext);
 
   return (
@@ -125,7 +120,7 @@ const MovieDetails = ({
           <div className="flex flex-col w-full mt-2 md:mt-0 md:mx-10 [&_p]:text-xs [&_p]:md:text-base">
             <h1 className="w-full font-bold text-center text-xl my-1 md:text-left md:w-auto md:text-3xl">
               {movieDetails.title}
-              {getYear(movieDetails.release_date)}
+              ({getYear(movieDetails.release_date)})
             </h1>
 
             <div className="flex md:flex-col">
