@@ -96,7 +96,7 @@ const PersonInfo = ({
               priority={true}
             />
 
-            <div className="w-auto px-0 md:w-[25vw] md:px-12 [&_p]:pb-4 [&_p]:text-xs [&_p]:md:text-base">
+            <div className="w-auto px-0 md:w-[25vw] md:px-16 [&_p]:pb-4 [&_p]:text-xs [&_p]:md:text-base">
               <Name personDetails={personDetails} className="md:hidden" />
               <p className="font-bold">
                 Also Known As: <br />
