@@ -7,10 +7,10 @@ const MovieCredits = ({ movies }: { movies: any }) => {
   return (
     <>
       {movies?.length ? (
-        <div className="flex flex-col w-full px-8 my-4">
-          <h2 className="font-bold text-xl">Other Movies</h2>
+        <div className="flex flex-col w-full px-8">
+          <h2 className="font-bold text-xl py-3">Other Movies</h2>
           <div
-            className={`flex flex-col w-max place-self-center h-[50vh] overflow-y-scroll md:overflow-y-hidden px-0 py-1 bg-white 
+            className={`flex flex-col w-max place-self-center h-[50vh] overflow-y-scroll md:overflow-y-hidden px-0 py-0 bg-white 
               md:overflow-x-scroll md:place-self-auto md:h-auto md:w-auto md:flex-row *:mx-1 *:my-3
               ${
                 movies.length < 11 ? "md:justify-center md:overflow-hidden" : ""
