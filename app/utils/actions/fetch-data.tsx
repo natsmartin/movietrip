@@ -1,5 +1,7 @@
 "use server";
 
+import { formatDate } from "@app/sections/Details/Details";
+
 export interface MyObject {
   [key: string]: any;
 }
@@ -46,4 +48,19 @@ export const fetchMovieList = async (filter: string) => {
     `${baseURL}/movie/${filter}?api_key=${process.env.API_KEY}`
   );
   return await response.json();
+};
+
+export const fetchPerson = async (id: string) => {
+  const response = await fetch(
+    `${baseURL}/person/${id}?api_key=${process.env.API_KEY}`
+  );
+  return await response.json();
+};
+
+export const fetchPersonMovieCredits = async (id: string) => {
+  const response = await fetch(
+    `${baseURL}/person/${id}/movie_credits?api_key=${process.env.API_KEY}`
+  );
+  const json = await response.json();
+  return await json.cast.filter((cast: MyObject) => Number(formatDate(cast.release_date).split(", ")[1]) > 2010 && cast.vote_count > 800);
 };

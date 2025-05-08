@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import clsx from "clsx";
 
-const links = [
+export const links = [
   { name: "Home", href: "/" },
   { name: "Popular", href: "/popular" },
   { name: "Top Rated", href: "/top_rated" },
