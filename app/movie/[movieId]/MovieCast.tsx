@@ -10,7 +10,7 @@ const MovieCast = ({ cast }: { cast: any }) => {
       cast-card rounded-xl"
     >
       <Image
-        className={`w-[20vw] h-auto rounded-tl-xl rounded-bl-xl
+        className={`w-[20vw] h-auto rounded-tl-xl rounded-bl-xl text-[0.60rem] md:text-base
         ${
           cast.profile_path
             ? "md:w-[-webkit-fill-available] md:h-auto"

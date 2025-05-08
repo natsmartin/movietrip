@@ -17,9 +17,9 @@ const NavLinks = () => {
 
   return (
     <div
-      className="flex justify-center items-center flex-wrap my-2 *:w-[100px]
-       md:flex-row *:md:w-[150px] *:text-center *:font-bold
-       *:p-4 *:m-[1px] *:text-white *:rounded-lg"
+      className="flex justify-center items-center flex-wrap my-2 *:w-[75px]
+       md:flex-row *:md:w-[150px] *:md:p-4 *:text-center *:font-bold
+       *:p-2 *:m-[1px] *:text-white *:rounded-lg"
     >
       {links.map((link) => (
         <Link
