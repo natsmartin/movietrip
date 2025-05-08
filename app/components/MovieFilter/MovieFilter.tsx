@@ -19,8 +19,8 @@ const MovieFilter = ({ filter, heading }: { filter: string; heading: string }) =
   }, [filter]);
 
   return (
-    <div className="flex min-h-screen flex-col justify-evenly md:items-center pt-8 md:p-16">
-      <h1 className="title flex items-start w-[90vw] font-bold md:w-[65vw] pl-[5vw] md:pl-0">
+    <div className="flex min-h-screen flex-col justify-center md:items-center pt-8 md:p-16">
+      <h1 className="title flex items-start w-[90vw] font-bold md:w-[850px] pl-[5vw] md:pl-0">
         {heading}
       </h1>
 

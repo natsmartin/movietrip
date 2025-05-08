@@ -8,7 +8,7 @@ const MovieCredits = ({ movies }: { movies: any }) => {
     <>
       {movies?.length ? (
         <div className="flex flex-col w-full px-8">
-          <h2 className="font-bold text-xl py-3">Other Movies</h2>
+          <h2 className="font-bold text-xl text-center md:text-start py-3">Other Movies</h2>
           <div
             className={`flex flex-col w-max place-self-center h-[50vh] overflow-y-scroll md:overflow-y-hidden px-0 py-0 bg-white 
               md:overflow-x-scroll md:place-self-auto md:h-auto md:w-auto md:flex-row *:mx-1 *:my-3
@@ -40,7 +40,7 @@ const OtherMovies = ({ movie }: { movie: any }) => {
           height={175}
           priority={true}
         />
-        <p className="italic text-sm md:text-base text-black text-center w-[138px] self-center">{movie.title}</p>
+        <p className="italic text-sm md:pt-3 md:text-base text-black text-center w-[138px] self-center">{movie.title}</p>
       </div>
     </Link>
   );

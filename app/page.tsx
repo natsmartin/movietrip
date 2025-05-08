@@ -1,17 +1,13 @@
 'use client'
-import Header from "@components/Header/Header";
 import Search from "@app/components/Search/Search";
-import Footer from "@components/Footer/Footer";
 
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col justify-evenly md:items-center pt-8 md:p-16">
-      <Header />
+    <div className="flex flex-col min-h-screen pt-8 md:p-12">
       <main className="flex flex-col md:items-center w-full">
         <Search />
       </main>
-      <Footer />
     </div>
   );
 }

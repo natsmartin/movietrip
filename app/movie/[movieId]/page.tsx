@@ -11,8 +11,7 @@ import {
   fetchMovieDetails,
   fetchMovieCredits,
   fetchMovieTrailer,
-  MyObject,
-  getYear,
+  MyObject
 } from "@utils/actions/fetch-data";
 import Image from "next/image";
 import Loading from "@app/loading";
@@ -75,6 +74,10 @@ const MovieComponent = ({ params }: { params: MovieIdType }) => {
 };
 
 export default MovieComponent;
+
+const getYear = (date: string): number => {
+  return Number(date.split("-")[0]);
+};
 
 const MovieDetails = ({
   movieDetails,
