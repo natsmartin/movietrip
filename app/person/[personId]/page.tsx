@@ -40,7 +40,7 @@ const PersonComponent = ({ params }: { params: PersonIdType }) => {
   }, [personDetails, params.personId]);
 
   return (
-    <div className="min-h-screen py-4 flex flex-col justify-center items-start md:flex-row">
+    <div className="min-h-screen md:w-auto py-4 flex flex-col md:justify-center md:items-center md:flex-row">
       <Suspense fallback={<Loading />}>
         <PersonInfo personDetails={personDetails} />
         <div className="flex flex-col md:py-10 md:w-[650px] md:mt-0 md:px-10 [&_p]:text-xs [&_p]:md:text-base">
@@ -100,8 +100,8 @@ const PersonInfo = ({
       {personDetails ? (
         <div className="justify-center flex flex-col">
           <div
-            className="flex flex-col p-4 my-4 pt-8 text-black
-              md:w-[330px] [&_p]:py-1 [&_p]:px-4 [&_p]:md:px-0"
+            className="flex flex-col items-center p-4 my-4 pt-8 text-black
+              w-screen md:w-fit [&_p]:py-1 [&_p]:px-4 [&_p]:md:px-0"
           >
             <Image
               className="poster-details-box h-fit mb-4 shadow-[10px_10px_10px_rgb(0,0,0,0.5)] rounded-xl 

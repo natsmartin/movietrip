@@ -46,6 +46,7 @@ body {
 .box {
   background-color: rgb(var(--background-end-rgb));
   border-color: rgb(var(--foreground-rgb));
+  width: clamp(90vw, 50vw, 850px)
 }
 
 .cast-card {
