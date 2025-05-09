@@ -28,7 +28,7 @@ export default function MovieBox({ movie }: { movie: Movie | any }) {
     <Link href={`/movie/${movie.id}`}>
     <div
       className="box flex h-[170px] bg-white border-2 border-slate-500 rounded-md m-2 shadow-lg
-        md:w-[850px] hover:scale-105 transition-all cursor-pointer"
+        md:w-[700px] hover:scale-105 transition-all cursor-pointer"
     >
       <Details response={movie} />
     </div>
