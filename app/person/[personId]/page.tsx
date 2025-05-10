@@ -40,7 +40,7 @@ const PersonComponent = ({ params }: { params: PersonIdType }) => {
   }, [personDetails, params.personId]);
 
   return (
-    <div className="min-h-screen md:w-auto py-4 flex flex-col md:justify-center md:items-center md:flex-row">
+    <div className="min-h-screen md:w-auto py-4 flex flex-col md:justify-center md:items-start md:flex-row">
       <Suspense fallback={<Loading />}>
         <PersonInfo personDetails={personDetails} />
         <div className="flex flex-col md:py-10 md:w-[650px] md:mt-0 md:px-10 [&_p]:text-xs [&_p]:md:text-base">
