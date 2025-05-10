@@ -13,7 +13,7 @@ const MovieCredits = ({ movies }: { movies: any }) => {
             className={`flex flex-col w-max h-[50vh] overflow-y-scroll md:overflow-y-hidden px-0 py-0 
               md:overflow-x-scroll md:h-auto md:w-auto md:flex-row *:mx-1 *:my-3 bg-white
               ${
-                movies.length < 11 ? "md:justify-center md:overflow-hidden" : ""
+                movies.length < 11 ? "md:justify-start md:overflow-hidden" : ""
               }`}
           >
             {movies?.map((movie: any, index: number) => (

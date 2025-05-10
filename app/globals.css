@@ -49,8 +49,16 @@ body {
   width: clamp(90vw, 50vw, 850px)
 }
 
+.bio-box {
+  width: clamp(50vw, 30vw, 650px)
+}
+
 .cast-card {
   color: black;
+}
+
+.card-role {
+  height: clamp(18dvh, 5dvh, 148px);
 }
 
 @layer utilities {
@@ -99,6 +107,10 @@ body {
   background-color: rgb(0 0 0 / 75%);
   z-index: 1;
   padding-top: 35%;
+}
+
+.poster-details-box {
+  width: clamp(25dvh, 100%, 50dvh);
 }
 
 .normal-text {

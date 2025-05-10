@@ -107,8 +107,7 @@ const MovieDetails = ({
          md:w-fit md:flex-row md:items-start [&_p]:py-1"
         >
           <Image
-            className="poster-details-box h-fit shadow-[10px_10px_10px_rgb(0,0,0,0.5)] rounded-xl 
-             md:w-[50dvh]"
+            className="poster-details-box h-fit shadow-[10px_10px_10px_rgb(0,0,0,0.5)] rounded-xl"
             src={
               movieDetails.poster_path
                 ? `${link.moviebox_poster}${movieDetails.poster_path}`

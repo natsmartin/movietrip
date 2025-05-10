@@ -40,32 +40,42 @@ const PersonComponent = ({ params }: { params: PersonIdType }) => {
   }, [personDetails, params.personId]);
 
   return (
-    <div className="min-h-screen md:w-auto py-4 flex flex-col md:justify-center md:items-start md:flex-row">
-      <Suspense fallback={<Loading />}>
-        <PersonInfo personDetails={personDetails} />
-        <div className="flex flex-col md:py-10 md:w-[650px] md:mt-0 md:px-10 [&_p]:text-xs [&_p]:md:text-base">
-          {personDetails ? (
-            <div className="bg-white dark:text-black p-0 md:p-8">
-              <Name personDetails={personDetails} className="hidden md:flex" />
-              <div className="hidden md:block">
-                <h2 className="font-semibold text-base mt-4 md:text-xl">
-                  Biography
-                </h2>
-                {biography.map((paragraph: string, index: number) => (
-                  <>
-                    <p className="font-light" key={index}>
-                      {paragraph}
-                    </p>
-                    <br />
-                  </>
-                ))}
+    <>
+      <div className="min-h-screen md:w-auto py-4 flex flex-col md:justify-center md:items-start md:flex-row">
+        <Suspense fallback={<Loading />}>
+          <PersonInfo personDetails={personDetails} />
+          <div className="bio-box flex flex-col md:py-10 md:mt-0 md:px-10 [&_p]:text-xs [&_p]:md:text-base">
+            {personDetails ? (
+              <div className="bg-white dark:text-black p-0 md:p-8">
+                <Name
+                  personDetails={personDetails}
+                  className="hidden md:flex"
+                />
+                <div className="hidden md:block">
+                  <h2 className="font-semibold text-base mt-4 md:text-xl">
+                    Biography
+                  </h2>
+                  {biography.map((paragraph: string, index: number) => (
+                    <>
+                      <p className="font-light" key={index}>
+                        {paragraph}
+                      </p>
+                      <br />
+                    </>
+                  ))}
+                </div>
               </div>
+            ) : null}
+            <div className="md:max-lg:hidden">
+              <MovieCredits movies={movies} />
             </div>
-          ) : null}
-          <MovieCredits movies={movies} />
-        </div>
-      </Suspense>
-    </div>
+          </div>
+        </Suspense>
+      </div>
+      <div className="md:max-lg:flex hidden">
+        <MovieCredits movies={movies} />
+      </div>
+    </>
   );
 };
 
@@ -76,7 +86,6 @@ const PersonInfo = ({
 }: {
   personDetails: PersonDetailsType | undefined;
 }) => {
-
   const formatGender = (gender: number): string | undefined => {
     let value;
     switch (gender) {
@@ -101,7 +110,7 @@ const PersonInfo = ({
         <div className="justify-center flex flex-col">
           <div
             className="flex flex-col items-center p-4 my-4 pt-8 text-black
-              w-screen md:w-fit [&_p]:py-1 [&_p]:px-4 [&_p]:md:px-0"
+             md:w-fit [&_p]:py-1 [&_p]:px-4 [&_p]:md:px-0"
           >
             <Image
               className="poster-details-box h-fit mb-4 shadow-[10px_10px_10px_rgb(0,0,0,0.5)] rounded-xl 
@@ -152,7 +161,6 @@ const PersonInfo = ({
               </p>
             </div>
           </div>
-
         </div>
       ) : null}
     </>
