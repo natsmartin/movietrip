@@ -74,3 +74,17 @@ export const fetchPersonMovieCredits = async (id: string) => {
       (a: any, b: any) => getYear(b.release_date) - getYear(a.release_date)
     );
 };
+
+export const fetchGenres = async () => {
+  const response = await fetch(
+    `${baseURL}/genre/movie/list?api_key=${process.env.API_KEY}`
+  );
+  return await response.json();
+};
+
+export const fetchMoviesWithGenre = async (genres: string, sort: string) => {
+  const response = await fetch(
+    `${baseURL}/discover/movie?with_genres=${genres}&sort_by=${sort}&api_key=${process.env.API_KEY}`
+  );
+  return await response.json();
+};

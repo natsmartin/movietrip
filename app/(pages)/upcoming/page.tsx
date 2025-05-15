@@ -4,7 +4,7 @@ import MovieFilter from "@app/components/MovieFilter/MovieFilter";
 const Upcoming = () => {
 
   return (
-    <MovieFilter filter={"upcoming"} heading={"Upcoming Movies"}/>
+    <MovieFilter filter={"upcoming"} heading={"Upcoming Movies"} sort={""}/>
   );
 };
 
