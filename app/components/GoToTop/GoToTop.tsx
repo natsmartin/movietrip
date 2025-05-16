@@ -9,9 +9,9 @@ const GoToTop = () => {
   };
 
   return (
-    <div className="absolute right-[1vw]">
+    <div className="fixed right-[1vw] bottom-[5vh]">
       <GoArrowUp color="white"
-        className="w-[50px] h-auto bg-[#1976d2] rounded-full p-1 opacity-75
+        className="w-[50px] h-auto bg-[#1976d2] rounded-full p-1 opacity-50
         hover:opacity-100 hover:scale-110 hover:cursor-pointer transition-all"
         onClick={scrollToTop}
       >
