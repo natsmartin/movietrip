@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import NavLinks from "@components/Navbar/NavLinks";
 import Header from "@components/Header/Header";
 import Footer from "@components/Footer/Footer";
+import GoToTop from "./components/GoToTop/GoToTop";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
         <Header />
         <NavLinks />
         {children}
+        <GoToTop />
         <Footer />
         <Analytics />
       </body>

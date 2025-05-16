@@ -82,9 +82,13 @@ export const fetchGenres = async () => {
   return await response.json();
 };
 
-export const fetchMoviesWithGenre = async (genres: string, sort: string) => {
+export const fetchMoviesWithGenre = async (
+  genres: string,
+  sort: string,
+  page: number
+) => {
   const response = await fetch(
-    `${baseURL}/discover/movie?with_genres=${genres}&sort_by=${sort}&api_key=${process.env.API_KEY}`
+    `${baseURL}/discover/movie?with_genres=${genres}&sort_by=${sort}&page=${page}&api_key=${process.env.API_KEY}`
   );
   return await response.json();
 };
