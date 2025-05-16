@@ -63,6 +63,8 @@ const MovieFilter = ({
         prev.filter((genre) => genre !== value)
       );
     }
+
+    setPage(1);
   };
 
   const handleClick = (e: React.MouseEvent) => {
