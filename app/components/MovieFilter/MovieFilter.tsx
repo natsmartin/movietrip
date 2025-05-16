@@ -94,7 +94,7 @@ const MovieFilter = ({
   return (
     <div className="flex flex-col min-h-screen justify-start pt-4 md:pt-8">
       {sort ? (
-        <div className="flex flex-col items-center px-12 py-4 bg-white border-black border-y-2">
+        <div className="flex flex-col items-center text-black px-12 py-4 bg-white border-black border-y-2">
           <label className="w-[75vw] font-bold ">Genres</label>
           <FormGroup
             className="px-2 md:px-12 w-[80vw] [&_span]:text-xs md:[&_span]:text-base"
