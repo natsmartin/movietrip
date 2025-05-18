@@ -73,7 +73,8 @@ const MovieFilter = ({
     const params = selectedGenres.toString().replaceAll(",", "%2C");
 
     const getMoviesWithGenre = async () => {
-      const response = await fetchMoviesWithGenre(params, sort, page);
+
+      const response = await fetchMoviesWithGenre(params, sort, selectedGenres.length === 0 ? page+1 : page);
 
       setTotalPage(response.total_pages);
 
