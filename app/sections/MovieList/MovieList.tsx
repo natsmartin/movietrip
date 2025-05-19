@@ -6,15 +6,17 @@ type MovieListType = Movie[];
 
 const MovieList = ({ movieList }: { movieList: MovieListType | any }) => {
   return (
-    <div className="flex flex-col items-center">
+    <>
       {movieList?.length !== 0 ? (
-        movieList?.map((movie: Movie, index: number) => (
-          <MovieBox key={index} movie={movie} />
-        ))
+        <div className="flex flex-col items-center px-4 overflow-y-scroll overflow-x-hidden w-fit h-[60vh]">
+          {movieList?.map((movie: Movie, index: number) => (
+            <MovieBox key={index} movie={movie} />
+          ))}
+        </div>
       ) : (
         <p id="no-results">No results found.</p>
       )}
-    </div>
+    </>
   );
 };
 

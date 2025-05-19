@@ -93,12 +93,12 @@ const MovieFilter = ({
   };
 
   return (
-    <div className="flex flex-col min-h-screen justify-start pt-4 md:pt-8">
+    <div className="flex flex-col justify-start pt-4 md:pt-8">
       {sort ? (
         <div className="flex flex-col items-center text-black px-12 py-4 bg-white border-black border-y-2">
           <label className="w-[75vw] font-bold ">Genres</label>
           <FormGroup
-            className="px-2 md:px-12 w-[80vw] [&_span]:text-xs md:[&_span]:text-base"
+            className="px-2 md:px-12 w-[80vw] [&_span]:text-[10px] md:[&_span]:text-base"
             style={{ flexDirection: "row" }}
           >
             {genres?.map((genre: GenreType, index: number) => (
@@ -120,13 +120,13 @@ const MovieFilter = ({
         </div>
       ) : null}
 
-      <div className="flex flex-col py-4 md:py-8">
-        <h1 className="title flex justify-center font-bold">{heading}</h1>
+      <div className="flex flex-col items-center">
+        <h1 className="title flex justify-center font-bold py-4">{heading}</h1>
 
         <Suspense fallback={<Loading />}>
           <MovieList movieList={list} />
           {(page < totalPage) && list.length !== 0 ? (
-            <Button
+            <Button style={{ margin: '1rem'}}
               className="w-fit self-center"
               variant="contained"
               onClick={handleClick}

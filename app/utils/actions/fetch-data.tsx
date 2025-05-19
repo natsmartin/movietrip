@@ -1,7 +1,5 @@
 "use server";
 
-import { formatDate } from "@app/sections/Details/Details";
-
 export interface MyObject {
   [key: string]: any;
 }

@@ -19,7 +19,6 @@ import MovieCredits from "./MovieCredits";
 import * as link from "@assets/links";
 import { formatDate } from "@app/sections/Details/Details";
 import ModalVideo from "react-modal-video";
-// import { Grow } from "@mui/material";
 
 interface MovieIdType {
   movieId: string;
