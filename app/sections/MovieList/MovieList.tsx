@@ -8,7 +8,11 @@ const MovieList = ({ movieList }: { movieList: MovieListType | any }) => {
   return (
     <>
       {movieList?.length !== 0 ? (
-        <div className="flex flex-col items-center px-4 overflow-y-scroll overflow-x-hidden w-fit h-[60vh]">
+        <div
+          className={`flex flex-col items-center px-4 overflow-y-scroll overflow-x-hidden w-fit h-[60vh] ${
+            movieList?.length ? "flex" : "hidden"
+          }`}
+        >
           {movieList?.map((movie: Movie, index: number) => (
             <MovieBox key={index} movie={movie} />
           ))}
