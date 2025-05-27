@@ -11,7 +11,7 @@ const MovieTrailer = ({ movietrailer }: { movietrailer: any }) => {
       <div
         className={
           isOpen
-            ? "modal-video [&_iframe]:w-[320px] [&_iframe]:md:w-[100dvh] [&_iframe]:md:h-[50dvw]"
+            ? "modal-video [&_iframe]:w-[320px] [&_iframe]:md:w-[80dvw] [&_iframe]:md:h-[80dvh]"
             : "hidden"
         }
       >
