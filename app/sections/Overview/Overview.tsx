@@ -17,7 +17,6 @@ export const formatDate = (date: string) => {
 };
 
 export default function Details({ response }: { response: Movie }) {
-
   const truncOverview = (overview: string, maxLength: number) => {
     if (overview.length > maxLength) {
       return overview.slice(0, maxLength) + "...";
@@ -27,19 +26,20 @@ export default function Details({ response }: { response: Movie }) {
 
   return (
     <>
-      <Image className="md:w-[94px] md:h-[141px]"
+      <Image
+        className="md:w-[94px] md:h-[141px]"
         src={
           response.poster_path
             ? `${movielist_poster}${response.poster_path}`
             : `${no_image}`
         }
         alt={response.title}
-        width={64}
-        height={111}
+        width={74}
+        height={115}
         priority={true}
       />
       <div className="flex flex-col mx-4 justify-center *:w-full">
-        <p className="font-bold text-left my-1 w-[190px] md:w-auto title">
+        <p className="font-bold text-left w-[190px] md:w-auto title">
           {truncOverview(response.title, 20)}
         </p>
         <p className="text-xs text-start my-2 md:text-base">

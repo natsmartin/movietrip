@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useState, useEffect, Suspense } from "react";
+import React, { Suspense, use } from "react";
 import {
   fetchPerson,
   fetchPersonMovieCredits,
@@ -8,7 +6,7 @@ import {
 import Loading from "@app/loading";
 import Image from "next/image";
 import * as link from "@assets/links";
-import { formatDate } from "@app/sections/Details/Details";
+import { formatDate } from "@app/sections/Overview/Overview";
 import MovieCredits from "./MovieCredits";
 
 interface PersonIdType {
@@ -20,24 +18,10 @@ interface PersonDetailsType {
 }
 
 const PersonComponent = ({ params }: { params: PersonIdType }) => {
-  const [personDetails, setPersonDetails] = useState<PersonDetailsType>();
-  const [movies, setMovies] = useState();
+  const personDetails: PersonDetailsType = use(fetchPerson(params.personId));
+  const movies = use(fetchPersonMovieCredits(params.personId));
 
   const biography = personDetails?.biography.split("\n\n");
-
-  useEffect(() => {
-    const getPerson = async () => {
-      const details = await fetchPerson(params.personId);
-      setPersonDetails(details);
-      console.log(details);
-      const movieList = await fetchPersonMovieCredits(params.personId);
-      setMovies(movieList);
-      console.log(movieList);
-    };
-    if (!personDetails || !params.personId) {
-      getPerson();
-    }
-  }, [personDetails, params.personId]);
 
   return (
     <>
@@ -55,14 +39,16 @@ const PersonComponent = ({ params }: { params: PersonIdType }) => {
                   <h2 className="font-semibold text-base mt-4 md:text-xl">
                     Biography
                   </h2>
-                  {biography.map((paragraph: string, index: number) => (
-                    <>
-                      <p className="font-light" key={index}>
-                        {paragraph}
-                      </p>
-                      <br />
-                    </>
-                  ))}
+                  {biography
+                    ? biography.map((paragraph: string, index: number) => (
+                        <>
+                          <p className="font-light" key={index}>
+                            {paragraph}
+                          </p>
+                          <br />
+                        </>
+                      ))
+                    : null}
                 </div>
               </div>
             ) : null}
