@@ -4,16 +4,16 @@ export interface MyObject {
   [key: string]: any;
 }
 
+export interface ParamsProps {
+  movieTitle: FormDataEntryValue | null;
+}
+
 const baseURL = "https://api.themoviedb.org/3";
 // API call to fetch movies by title
-export const fetchMovie = async ({
-  movieTitle,
-}: {
-  movieTitle: FormDataEntryValue | null;
-}) => {
+export const fetchMovie = async (params: ParamsProps, page: number) => {
   try {
     const response = await fetch(
-      `${baseURL}/search/movie?api_key=${process.env.API_KEY}&query=${movieTitle}`
+      `${baseURL}/search/movie?page=${page}&api_key=${process.env.API_KEY}&query=${params.movieTitle}`
     );
 
     if (!response.ok) {
