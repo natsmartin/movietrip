@@ -6,6 +6,7 @@ import NavLinks from "@components/Navbar/NavLinks";
 import Header from "@components/Header/Header";
 import Footer from "@components/Footer/Footer";
 import GoToTop from "./components/GoToTop/GoToTop";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +29,7 @@ export default function RootLayout({
         <GoToTop />
         <Footer />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
