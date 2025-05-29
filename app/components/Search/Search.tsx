@@ -4,47 +4,37 @@ import React, { useState, useEffect, FormEvent, Suspense } from "react";
 import {
   fetchMovie,
   MyObject,
-  ParamsProps,
 } from "@app/utils/actions/fetch-data";
 import MovieList from "@sections/MovieList/MovieList";
 import Loading from "@app/loading";
 import { Button } from "@mui/material";
+import { useSearchParams } from "next/navigation";
 
 export default function Search() {
   const [modal, setModal] = useState("hidden");
 
-  const [params, setParams] = useState<ParamsProps>({ movieTitle: "" });
   const [movieList, setMovieList] = useState<Array<MyObject>>([]);
   const [totalPage, setTotalPage] = useState(10);
   const [page, setPage] = useState(1);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.currentTarget);
-
-    setParams({
-      movieTitle: formData.get("title"),
-    });
-
-    setPage(1);
-  };
+  const searchParams = useSearchParams();
+  const search = searchParams.get("title");
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetchMovie(params, page);
+      const response = await fetchMovie(search, page);
       setMovieList(response.results);
       setTotalPage(response.total_pages);
     }
 
-    if (params.movieTitle && page === 1) {
+    if (search && page === 1) {
       fetchData();
     }
-  }, [page, params]);
+  }, [page, search]);
 
   const handleClick = () => {
     const fetchData = async () => {
-      const response = await fetchMovie(params, page + 1);
+      const response = await fetchMovie(search, page + 1);
       setMovieList((prev: Array<MyObject>) => [...prev, ...response.results]);
       setTotalPage(response.total_pages);
     };
@@ -79,7 +69,7 @@ export default function Search() {
           </div>
         </div>
         <form
-          onSubmit={handleSubmit}
+          onSubmit={() => setPage(1)}
           className="flex flex-col w-full justify-center items-center"
         >
           <div className="flex justify-center w-[80vw] md:w-[620px]">
@@ -89,7 +79,7 @@ export default function Search() {
               name="title"
               required
               className="input-title-clamp dark:text-black rounded p-1 text-xs m-2 md:mx-4 md:text-base"
-              placeholder="Search for title"
+              placeholder={search || "Search for title"}
               maxLength={100}
             ></input>
             <button

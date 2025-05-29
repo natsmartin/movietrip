@@ -10,10 +10,10 @@ export interface ParamsProps {
 
 const baseURL = "https://api.themoviedb.org/3";
 // API call to fetch movies by title
-export const fetchMovie = async (params: ParamsProps, page: number) => {
+export const fetchMovie = async (title: string | null, page: number) => {
   try {
     const response = await fetch(
-      `${baseURL}/search/movie?page=${page}&api_key=${process.env.API_KEY}&query=${params.movieTitle}`
+      `${baseURL}/search/movie?page=${page}&api_key=${process.env.API_KEY}&query=${title}`
     );
 
     if (!response.ok) {
