@@ -65,7 +65,7 @@ export default function Search() {
             >
               x
             </span>
-            <p className="m-6">Please enter a movie title.</p>
+            <p className="m-6 dark:text-black">Please enter a movie title.</p>
           </div>
         </div>
         <form
