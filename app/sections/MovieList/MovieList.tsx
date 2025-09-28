@@ -4,10 +4,21 @@ import { Movie } from "@sections/MovieBox/MovieBox";
 
 type MovieListType = Movie[];
 
-const MovieList = ({ movieList }: { movieList: MovieListType | any }) => {
+const MovieList = ({
+  movieList,
+  isLoading,
+}: {
+  movieList: MovieListType | any;
+  isLoading: boolean;
+}) => {
+
+  if (isLoading) {
+    return;
+  }
+
   return (
     <>
-      {movieList ? (
+      {movieList && isLoading ? (
         <div
           className={`flex flex-col items-center px-4 overflow-y-scroll overflow-x-hidden w-fit h-[60vh] ${
             movieList?.length ? "flex" : "hidden"

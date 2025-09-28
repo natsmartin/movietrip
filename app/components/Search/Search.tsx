@@ -16,6 +16,7 @@ export default function Search() {
   const [movieList, setMovieList] = useState<Array<MyObject>>([]);
   const [totalPage, setTotalPage] = useState(10);
   const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
 
   const searchParams = useSearchParams();
   const search = searchParams.get("title");
@@ -24,18 +25,20 @@ export default function Search() {
     async function fetchData() {
       const response = await fetchMovie(search, page);
       setMovieList(response.results);
+      setIsLoading(false);
       setTotalPage(response.total_pages);
     }
 
     if (search && page === 1) {
       fetchData();
     }
-  }, [page, search]);
+  }, [page, search, setIsLoading]);
 
   const handleClick = () => {
     const fetchData = async () => {
       const response = await fetchMovie(search, page + 1);
       setMovieList((prev: Array<MyObject>) => [...prev, ...response.results]);
+      setIsLoading(false);
       setTotalPage(response.total_pages);
     };
 
@@ -95,7 +98,7 @@ export default function Search() {
         </form>
       </div>
       <Suspense fallback={<Loading />}>
-        <MovieList movieList={movieList} />
+        <MovieList movieList={movieList} isLoading={isLoading}/>
         {page < totalPage && movieList.length !== 0 ? (
           <Button
             style={{ margin: "1rem" }}
