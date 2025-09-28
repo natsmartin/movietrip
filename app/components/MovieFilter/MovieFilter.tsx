@@ -24,6 +24,7 @@ const MovieFilter = ({
   const [genres, setGenres] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(10);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const [selectedGenres, setSelectedGenres] = useState<Array<string>>([]);
 
@@ -38,6 +39,7 @@ const MovieFilter = ({
     const getMovieList = async () => {
       const response = await fetchMovieList(filter);
       setList(response.results);
+      setIsLoading(false);
       setTotalPage(response.total_pages);
     };
 
@@ -124,7 +126,7 @@ const MovieFilter = ({
         <h1 className="title flex justify-center font-bold py-4">{heading}</h1>
 
         <Suspense fallback={<Loading />}>
-          <MovieList movieList={list} />
+          <MovieList movieList={list} isLoading={isLoading}/>
           {(page < totalPage) && list.length !== 0 ? (
             <Button style={{ margin: '1rem'}}
               className="w-fit self-center"
