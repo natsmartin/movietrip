@@ -16,7 +16,7 @@ export default function Search() {
   const [movieList, setMovieList] = useState<Array<MyObject>>([]);
   const [totalPage, setTotalPage] = useState(10);
   const [page, setPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const searchParams = useSearchParams();
   const search = searchParams.get("title");
