@@ -40,7 +40,7 @@ export default function Details({ response }: { response: Movie }) {
       />
       <div className="flex flex-col mx-4 justify-center *:w-full">
         <p className="font-bold text-left w-[190px] md:w-auto title">
-          {truncOverview(response.title, 20)}
+          {truncOverview(response.title, 40)}
         </p>
         <p className="text-xs text-start my-2 md:text-base">
           Released Date:{" "}
@@ -49,7 +49,7 @@ export default function Details({ response }: { response: Movie }) {
         <p className="text-xs hidden font-bold md:text-base md:pr-4 min-[425px]:inline">
           Overview:{" "}
           <span className="font-normal">
-            {truncOverview(response.overview, 70)}
+            {truncOverview(response.overview, 145)}
           </span>
         </p>
       </div>

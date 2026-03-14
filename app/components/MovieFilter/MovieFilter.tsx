@@ -62,7 +62,7 @@ const MovieFilter = ({
       setSelectedGenres((prev: Array<string>) => [...prev, value]);
     } else {
       setSelectedGenres((prev: Array<string>) =>
-        prev.filter((genre) => genre !== value)
+        prev.filter((genre) => genre !== value),
       );
     }
 
@@ -75,8 +75,11 @@ const MovieFilter = ({
     const params = selectedGenres.toString().replaceAll(",", "%2C");
 
     const getMoviesWithGenre = async () => {
-
-      const response = await fetchMoviesWithGenre(params, sort, selectedGenres.length === 0 ? page+1 : page);
+      const response = await fetchMoviesWithGenre(
+        params,
+        sort,
+        selectedGenres.length === 0 ? page + 1 : page,
+      );
 
       setTotalPage(response.total_pages);
 
@@ -95,14 +98,11 @@ const MovieFilter = ({
   };
 
   return (
-    <div className="flex flex-col justify-start pt-4 md:pt-8">
+    <div className="w-full max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-start gap-6 pt-4 md:pt-8">
       {sort ? (
-        <div className="flex flex-col items-center text-black px-12 py-4 bg-white border-black border-y-2">
-          <label className="w-[75vw] font-bold ">Genres</label>
-          <FormGroup
-            className="px-2 md:px-12 w-[80vw] [&_span]:text-[10px] md:[&_span]:text-base"
-            style={{ flexDirection: "row" }}
-          >
+        <div className="flex flex-col text-black px-5 py-4 bg-white md:w-64">
+          <label className="font-bold m-2">Genres</label>
+          <FormGroup className="px-2 [&_span]:py-0 [&_span]:text-[10px] md:[&_span]:text-base md:[&_span]:py-2">
             {genres?.map((genre: GenreType, index: number) => (
               <FormControlLabel
                 key={index}
@@ -112,9 +112,10 @@ const MovieFilter = ({
             ))}
           </FormGroup>
           <Button
+            className="w-fit self-center"
             disabled={isDisabled}
             variant="contained"
-            style={{ width: "fit-content" }}
+            style={{ width: "fit-content", margin: "1rem" }}
             onClick={handleClick}
           >
             Search
@@ -122,13 +123,16 @@ const MovieFilter = ({
         </div>
       ) : null}
 
-      <div className="flex flex-col items-center">
-        <h1 className="title flex justify-center font-bold py-4">{heading}</h1>
+      <div className="flex flex-col items-start m-2 w-full md:flex-1 overflow-visible">
+        <h1 className="title flex justify-start w-full font-bold px-6 py-4">
+          {heading}
+        </h1>
 
         <Suspense fallback={<Loading />}>
-          <MovieList movieList={list} isLoading={isLoading}/>
-          {(page < totalPage) && list.length !== 0 ? (
-            <Button style={{ margin: '1rem'}}
+          <MovieList movieList={list} isLoading={isLoading} />
+          {page < totalPage && list.length !== 0 ? (
+            <Button
+              style={{ margin: "1rem" }}
               className="w-fit self-center"
               variant="contained"
               onClick={handleClick}
