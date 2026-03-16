@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} w-fit md:w-full`}>
+      <body className={`${inter.className} w-full`}>
         <Header />
         <NavLinks />
         {children}
