@@ -6,7 +6,7 @@ export default function PreventZoom() {
   useEffect(() => {
     // Instead of changing viewport (which disables pinch-zoom), ensure focused
     // form controls have at least 16px font-size to avoid mobile auto-zoom.
-    const prevSizes = new WeakMap<HTMLElement, string | null>();
+    let prevSizes = new WeakMap<HTMLElement, string | null>();
 
     const ensureSize = (el: HTMLElement) => {
       try {
@@ -52,7 +52,7 @@ export default function PreventZoom() {
     return () => {
       window.removeEventListener("focusin", onFocusIn);
       window.removeEventListener("focusout", onFocusOut);
-      prevSizes.clear();
+      prevSizes = new WeakMap();
     };
   }, []);
 
