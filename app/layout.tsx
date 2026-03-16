@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import PreventZoom from "./PreventZoom";
 import { Analytics } from "@vercel/analytics/react";
 import NavLinks from "@components/Navbar/NavLinks";
 import Header from "@components/Header/Header";
 import Footer from "@components/Footer/Footer";
 import GoToTop from "./components/GoToTop/GoToTop";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
       <body className={`${inter.className} w-full`}>
+        <PreventZoom />
         <Header />
         <NavLinks />
         {children}
