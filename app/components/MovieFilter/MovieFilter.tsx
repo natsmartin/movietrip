@@ -102,7 +102,7 @@ const MovieFilter = ({
       {sort ? (
         <div className="flex flex-col text-black px-5 py-4 bg-white md:w-64">
           <label className="font-bold m-2">Genres</label>
-          <FormGroup className="px-2 [&_span]:py-0 [&_span]:text-[10px] md:[&_span]:text-base md:[&_span]:py-2">
+          <FormGroup style={{ display: "block" }} className="px-2 [&_span]:py-0 [&_span]:text-[10px] md:[&_span]:text-base md:[&_span]:py-2">
             {genres?.map((genre: GenreType, index: number) => (
               <FormControlLabel
                 key={index}
@@ -123,7 +123,7 @@ const MovieFilter = ({
         </div>
       ) : null}
 
-      <div className="flex flex-col items-start m-2 w-full md:flex-1 overflow-visible">
+      <div className="flex flex-col items-center w-full md:flex-1 overflow-visible">
         <h1 className="title flex justify-start w-full font-bold px-6 py-4">
           {heading}
         </h1>
