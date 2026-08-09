@@ -18,8 +18,8 @@ interface PersonDetailsType {
 }
 
 const PersonComponent = ({ params }: { params: PersonIdType }) => {
-  const personDetails: PersonDetailsType = use(fetchPerson(params.personId));
-  const movies = use(fetchPersonMovieCredits(params.personId));
+  const personDetails: PersonDetailsType = use(fetchPerson(params.personId)) ?? {};
+  const movies = use(fetchPersonMovieCredits(params.personId)) ?? [];
 
   const biography = personDetails?.biography.split("\n\n");
 

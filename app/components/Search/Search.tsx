@@ -24,9 +24,9 @@ export default function Search() {
   useEffect(() => {
     async function fetchData() {
       const response = await fetchMovie(search, page);
-      setMovieList(response.results);
+      setMovieList(response?.results ?? []);
       setIsLoading(false);
-      setTotalPage(response.total_pages);
+      setTotalPage(response?.total_pages ?? 0);
     }
 
     if (search && page === 1) {
@@ -37,9 +37,9 @@ export default function Search() {
   const handleClick = () => {
     const fetchData = async () => {
       const response = await fetchMovie(search, page + 1);
-      setMovieList((prev: Array<MyObject>) => [...prev, ...response.results]);
+      setMovieList((prev: Array<MyObject>) => [...prev, ...(response?.results ?? [])]);
       setIsLoading(false);
-      setTotalPage(response.total_pages);
+      setTotalPage(response?.total_pages ?? 0);
     };
 
     setPage((prev) => prev + 1);

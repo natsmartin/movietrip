@@ -21,7 +21,7 @@ const MovieFilter = ({
   sort: string;
 }) => {
   const [list, setList] = useState<Array<MyObject>>([]);
-  const [genres, setGenres] = useState([]);
+  const [genres, setGenres] = useState<Array<GenreType>>([]);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(10);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -38,14 +38,14 @@ const MovieFilter = ({
   useEffect(() => {
     const getMovieList = async () => {
       const response = await fetchMovieList(filter);
-      setList(response.results);
+      setList(response?.results ?? []);
       setIsLoading(false);
-      setTotalPage(response.total_pages);
+      setTotalPage(response?.total_pages ?? 0);
     };
 
     const getGenres = async () => {
       const response = await fetchGenres();
-      setGenres(response.genres);
+      setGenres((response?.genres ?? []) as GenreType[]);
     };
 
     getMovieList();
@@ -81,12 +81,12 @@ const MovieFilter = ({
         selectedGenres.length === 0 ? page + 1 : page,
       );
 
-      setTotalPage(response.total_pages);
+      setTotalPage(response?.total_pages ?? 0);
 
       if (btnTextContent === "Search") {
-        setList(response.results);
+        setList(response?.results ?? []);
       } else if (btnTextContent === "Load More") {
-        setList((prev: Array<MyObject>) => [...prev, ...response.results]);
+        setList((prev: Array<MyObject>) => [...prev, ...(response?.results ?? [])]);
       }
     };
 
@@ -123,7 +123,7 @@ const MovieFilter = ({
         </div>
       ) : null}
 
-      <div className="flex flex-col items-center w-full md:flex-1 overflow-visible">
+      <div className="flex flex-col items-center md:items-start w-full md:flex-1 overflow-visible">
         <h1 className="title flex justify-start w-full font-bold px-6 py-4">
           {heading}
         </h1>

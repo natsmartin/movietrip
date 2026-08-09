@@ -16,12 +16,12 @@ interface MovieIdType {
 
 const MovieComponent = ({ params }: { params: MovieIdType }) => {
   const movieDetails = use(fetchMovieDetails(params.movieId));
-  const credits = use(fetchMovieCredits(params.movieId));
-  const movieCast: never[] | MyObject[] = credits.cast;
-  const movieCrew: never[] | MyObject[] = credits.crew.filter(
+  const credits = use(fetchMovieCredits(params.movieId)) ?? { cast: [], crew: [] };
+  const movieCast: never[] | MyObject[] = credits.cast ?? [];
+  const movieCrew: never[] | MyObject[] = (credits.crew ?? []).filter(
     (crew: any) => crew.job === "Director"
   );
-  const movieTrailer = use(fetchMovieTrailer(params.movieId));
+  const movieTrailer = use(fetchMovieTrailer(params.movieId)) ?? [];
 
   return (
     <div className="h-full py-4 flex flex-col justify-start items-center overflow-x-hidden">
