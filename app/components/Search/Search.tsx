@@ -87,7 +87,7 @@ export default function Search() {
             ></input>
             <button
               type="submit"
-              className="text-white bg-gray-800 hover:bg-gray-900 m-2
+              className="text-white bg-gray-800 hover:bg-gray-600 m-2
                         focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-4 py-2 md:text-base md:ml-2
                         dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
               onClick={onSearch}
