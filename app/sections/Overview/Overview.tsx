@@ -34,7 +34,7 @@ export default function Details({ response }: { response: Movie }) {
             : `${no_image}`
         }
         alt={response.title}
-        width={74}
+        width={94}
         height={115}
         priority={true}
       />
@@ -49,7 +49,7 @@ export default function Details({ response }: { response: Movie }) {
         <p className="text-xs hidden font-bold md:text-base md:pr-4 min-[425px]:inline">
           Overview:{" "}
           <span className="font-normal">
-            {truncOverview(response.overview, 145)}
+            {truncOverview(response.overview, 130)}
           </span>
         </p>
       </div>
