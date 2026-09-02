@@ -38,7 +38,7 @@ export default function Details({ response }: { response: Movie }) {
         height={115}
         priority={true}
       />
-      <div className="flex flex-col mx-4 justify-center *:w-full">
+      <div className="flex flex-col mx-4 md:mx-2 justify-center *:w-full">
         <p className="font-bold text-left w-[190px] md:w-auto title">
           {truncOverview(response.title, 40)}
         </p>
@@ -46,10 +46,10 @@ export default function Details({ response }: { response: Movie }) {
           Released Date:{" "}
           <span className="font-bold">{formatDate(response.release_date)}</span>
         </p>
-        <p className="text-xs hidden font-bold md:text-base md:pr-4 min-[425px]:inline">
+        <p className="text-xs hidden font-bold md:text-base/6 md:pr-4 min-[425px]:inline">
           Overview:{" "}
           <span className="font-normal">
-            {truncOverview(response.overview, 130)}
+            {truncOverview(response.overview, 125)}
           </span>
         </p>
       </div>
