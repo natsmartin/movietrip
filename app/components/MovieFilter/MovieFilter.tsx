@@ -98,10 +98,10 @@ const MovieFilter = ({
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-start gap-6 pt-4 md:pt-8">
+    <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 pt-4 md:flex-row md:items-start md:pt-8">
       {sort ? (
-        <div className="flex flex-col text-black px-5 py-4 bg-white min-w-fit md:w-64">
-          <label className="font-bold m-2">Genres</label>
+        <div className="flex min-w-fit flex-col bg-white px-5 py-4 text-black md:w-64 md:self-start">
+          <label className="m-2 font-bold">Genres</label>
           <FormGroup style={{ display: "block" }} className="md:[&>label]:block px-2 [&_span]:py-0 [&_span]:text-[10px] md:[&_span]:text-base md:[&_span]:py-2">
             {genres?.map((genre: GenreType, index: number) => (
               <FormControlLabel
@@ -123,8 +123,8 @@ const MovieFilter = ({
         </div>
       ) : null}
 
-      <div className="flex flex-col items-center md:items-start w-full md:flex-1 overflow-visible">
-        <h1 className="title flex justify-start w-full font-bold px-6 py-4">
+      <div className="flex flex-col overflow-visible md:flex-1 md:items-start">
+        <h1 className="title flex w-full justify-start px-6 py-4 font-bold">
           {heading}
         </h1>
 
