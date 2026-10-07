@@ -86,7 +86,10 @@ const MovieFilter = ({
       if (btnTextContent === "Search") {
         setList(response?.results ?? []);
       } else if (btnTextContent === "Load More") {
-        setList((prev: Array<MyObject>) => [...prev, ...(response?.results ?? [])]);
+        setList((prev: Array<MyObject>) => [
+          ...prev,
+          ...(response?.results ?? []),
+        ]);
       }
     };
 
@@ -98,11 +101,14 @@ const MovieFilter = ({
   };
 
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 pt-4 md:flex-row md:items-start md:pt-8">
+    <div className="flex flex-col pt-4 md:flex-row md:items-start md:pt-8">
       {sort ? (
         <div className="flex min-w-fit flex-col bg-white px-5 py-4 text-black md:w-64 md:self-start">
           <label className="m-2 font-bold">Genres</label>
-          <FormGroup style={{ display: "block" }} className="md:[&>label]:block px-2 [&_span]:py-0 [&_span]:text-[10px] md:[&_span]:text-base md:[&_span]:py-2">
+          <FormGroup
+            style={{ display: "block" }}
+            className="md:[&>label]:block px-2 [&_span]:py-0 [&_span]:text-[10px] md:[&_span]:text-base md:[&_span]:py-2"
+          >
             {genres?.map((genre: GenreType, index: number) => (
               <FormControlLabel
                 key={index}
