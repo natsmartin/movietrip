@@ -101,7 +101,8 @@ const MovieFilter = ({
   };
 
   return (
-    <div className="flex flex-col pt-4 md:flex-row md:items-start md:pt-8">
+    <div className="flex flex-col w-full pt-4 md:flex-row md:items-start md:pt-8">
+      <div className="flex w-[10%]"></div>
       {sort ? (
         <div className="flex min-w-fit flex-col bg-white px-5 py-4 text-black md:w-64 md:self-start">
           <label className="m-2 font-bold">Genres</label>
@@ -128,9 +129,9 @@ const MovieFilter = ({
           </Button>
         </div>
       ) : null}
-
-      <div className="flex flex-col overflow-visible md:flex-1 md:items-start">
-        <h1 className="title flex w-full justify-start px-6 py-4 font-bold">
+      <div className="flex w-[2vw]"></div>
+      <div className="flex flex-col items-center overflow-visible md:flex-1 md:items-start">
+        <h1 className="title flex py-4 px-4 justify-start font-bold">
           {heading}
         </h1>
 
@@ -148,6 +149,7 @@ const MovieFilter = ({
           ) : null}
         </Suspense>
       </div>
+      <div className="flex w-[10%]"></div>
     </div>
   );
 };

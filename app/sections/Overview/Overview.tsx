@@ -40,16 +40,16 @@ export default function Details({ response }: { response: Movie }) {
       />
       <div className="flex flex-col mx-4 md:mx-2 justify-center *:w-full">
         <p className="font-bold text-left w-[190px] md:w-auto title">
-          {truncOverview(response.title, 40)}
+          {truncOverview(response.title, 30)}
         </p>
         <p className="text-xs text-start my-2 md:text-base">
           Released Date:{" "}
           <span className="font-bold">{formatDate(response.release_date)}</span>
         </p>
-        <p className="text-xs hidden font-bold md:text-base/6 md:pr-4 min-[425px]:inline">
+        <p className="text-xs hidden font-bold md:text-base/6 md:pr-4 min-[800px]:inline">
           Overview:{" "}
           <span className="font-normal">
-            {truncOverview(response.overview, 125)}
+            {truncOverview(response.overview, 120)}
           </span>
         </p>
       </div>
