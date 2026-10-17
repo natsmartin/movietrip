@@ -38,20 +38,26 @@ export default function Details({ response }: { response: Movie }) {
         height={115}
         priority={true}
       />
-      <div className="flex flex-col mx-4 md:mx-2 justify-center *:w-full">
-        <p className="font-bold text-left w-[190px] md:w-auto title">
-          {truncOverview(response.title, 30)}
-        </p>
-        <p className="text-xs text-start my-2 md:text-base">
-          Released Date:{" "}
-          <span className="font-bold">{formatDate(response.release_date)}</span>
-        </p>
-        <p className="text-xs hidden font-bold md:text-base/6 md:pr-4 min-[800px]:inline">
-          Overview:{" "}
-          <span className="font-normal">
-            {truncOverview(response.overview, 120)}
-          </span>
-        </p>
+      <div className="flex mx-4 md:mx-2 justify-center">
+        <div className="flex flex-col mx-2 justify-center normal-text lg:w-3/6 md:mx-2">
+          <p className="font-bold text-left title">
+            {truncOverview(response.title, 25)}
+          </p>
+          <p className="text-xs text-start my-2 normal-text lg:text-base">
+            Released Date:{" "}
+            <span className="font-bold">
+              {formatDate(response.release_date)}
+            </span>
+          </p>
+        </div>
+        <div className="flex mx-4 items-center w-0 lg:w-5/6 md:mx-2 *:w-full">
+          <p className="text-xs hidden font-bold normal-text lg:text-base/6 lg:pr-4 min-[800px]:inline">
+            Overview:{" "}
+            <span className="font-normal normal-text">
+              {truncOverview(response.overview, 130)}
+            </span>
+          </p>
+        </div>
       </div>
     </>
   );
