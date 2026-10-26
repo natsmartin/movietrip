@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# MovieTrip
 
-## Getting Started
+MovieTrip is a movie discovery app built with Next.js. Browse popular, top-rated, and upcoming films; search by title; filter movie lists by genre; and view film and cast details. Movie data is provided by [The Movie Database (TMDb)](https://www.themoviedb.org/).
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Search movies by title and load additional results.
+- Browse popular, top-rated, and upcoming movies.
+- Filter movie lists by genre and load more results.
+- View movie details, cast, director, and available trailers.
+- View people profiles, biographies, and film credits.
+- Responsive interface styled with Tailwind CSS and Material UI.
+
+## Getting started
+
+### Requirements
+
+- Node.js and npm
+- A TMDb API key
+
+### Installation
+
+1. Clone the repository and open its directory.
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Create a `.env.local` file in the project root and add your TMDb API key:
+
+   ```env
+   API_KEY=your_tmdb_api_key
+   ```
+
+   The application reads `API_KEY` in its server-side TMDb request helper. Keep the key private and do not commit `.env.local`.
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000).
+
+## Available routes
+
+| Route | Description |
+| --- | --- |
+| `/` | Search movies by title |
+| `/popular` | Browse popular movies and filter by genre |
+| `/top_rated` | Browse top-rated movies and filter by genre |
+| `/upcoming` | Browse upcoming movies |
+| `/movie/[movieId]` | View movie details, cast, crew, and trailer |
+| `/person/[personId]` | View a person's profile and movie credits |
+
+## Development commands
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the Next.js development server |
+| `npm run build` | Create a production build |
+| `npm start` | Serve the production build |
+| `npm run lint` | Run the Next.js ESLint checks |
+| `npm test` | Run the Jest test suite |
+| `npm run test:watch` | Run Jest in watch mode |
+
+## Project structure
+
+```text
+app/
+  (pages)/             Movie category routes
+  components/          Shared UI, navigation, search, and filters
+  movie/[movieId]/     Movie detail route and sections
+  person/[personId]/   Person profile route and credits
+  sections/            Reusable movie list and overview sections
+  utils/actions/       TMDb API request helpers
+  page.tsx             Home page and movie search
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app uses the Next.js App Router with React and TypeScript. TMDb API calls are centralized in `app/utils/actions/`, and `app/components/` contains shared interface components.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Deploy as a Next.js application. Configure `API_KEY` in the deployment environment before building or running the app, and keep the value out of source control.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Movie data and images are provided by TMDb. MovieTrip is not endorsed or certified by TMDb.
