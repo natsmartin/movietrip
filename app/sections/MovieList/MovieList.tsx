@@ -20,7 +20,7 @@ const MovieList = ({
     <>
       {movieList.length && !isLoading ? (
         <div
-          className={`flex flex-col overflow-y-hidden overflow-x-hidden items-center w-full ${
+          className={`flex w-full max-w-[1100px] min-w-0 flex-col items-center gap-3 overflow-y-hidden overflow-x-hidden px-3 sm:px-4 ${
             movieList?.length ? "flex" : "hidden"
           }`}
         >

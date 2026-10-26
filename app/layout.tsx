@@ -32,7 +32,7 @@ export default function RootLayout({
         <NavLinks />
         {children}
         <GoToTop />
-        <Footer />
+        {/* <Footer /> */}
         <Analytics />
         <SpeedInsights />
       </body>

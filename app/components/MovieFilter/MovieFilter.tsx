@@ -101,14 +101,13 @@ const MovieFilter = ({
   };
 
   return (
-    <div className="flex flex-col w-full pt-4 md:flex-row md:items-start md:pt-8">
-      <div className="flex w-[10vw]"></div>
+    <div className="mx-auto flex w-full max-w-screen-2xl flex-col gap-4 px-3 pt-4 sm:px-5 md:flex-row md:items-start md:gap-6 md:px-8 md:pt-8">
       {sort ? (
-        <div className="flex min-w-fit flex-col bg-white px-5 py-4 text-black md:w-64 md:self-start">
+        <aside className="flex w-full shrink-0 flex-col rounded-md bg-white px-4 py-3 text-black md:sticky md:top-4 md:w-60 md:px-5 md:py-4">
           <label className="m-2 font-bold">Genres</label>
           <FormGroup
-            style={{ display: "block" }}
-            className="md:[&>label]:block px-2 [&_span]:py-0 [&_span]:text-[10px] md:[&_span]:text-base md:[&_span]:py-2"
+            style={{ display: "grid" }}
+            className="grid max-h-48 grid-cols-2 overflow-y-auto px-1 sm:grid-cols-3 md:max-h-[calc(100vh-12rem)] md:grid-cols-1 [&_.MuiFormControlLabel-root]:m-0 [&_.MuiFormControlLabel-root]:min-w-0 [&_.MuiFormControlLabel-label]:break-words"
           >
             {genres?.map((genre: GenreType, index: number) => (
               <FormControlLabel
@@ -127,11 +126,10 @@ const MovieFilter = ({
           >
             Search
           </Button>
-        </div>
+        </aside>
       ) : null}
-      <div className="flex w-[2vw]"></div>
-      <div className="flex flex-col items-center overflow-visible md:flex-1">
-        <h1 className="title flex py-4 px-4 justify-start font-bold">
+      <section className="flex w-full min-w-0 flex-1 flex-col items-center overflow-visible">
+        <h1 className="title w-full break-words py-4 font-bold">
           {heading}
         </h1>
 
@@ -148,8 +146,7 @@ const MovieFilter = ({
             </Button>
           ) : null}
         </Suspense>
-      </div>
-      <div className="flex w-[10vw]"></div>
+      </section>
     </div>
   );
 };

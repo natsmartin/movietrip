@@ -25,10 +25,10 @@ export default function MovieBox({ movie }: { movie: Movie | any }) {
   }
 
   return (
-    <Link href={`/movie/${movie.id}`}>
+    <Link href={`/movie/${movie.id}`} className="block w-full min-w-0">
       <div
-        className="box flex h-[115px] md:h-[140px] bg-white border-slate-500 rounded-md m-2 shadow-lg
-        md:w-[55vw] hover:scale-105 transition-all cursor-pointer"
+        className="box flex min-h-[116px] w-full min-w-0 items-center rounded-md border-slate-500 bg-white shadow-lg
+        transition-transform hover:scale-[1.01] sm:min-h-[140px]"
       >
         <Details response={movie} />
       </div>

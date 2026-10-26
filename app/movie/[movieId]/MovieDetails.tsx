@@ -38,11 +38,11 @@ const MovieDetails = ({
     <>
       {movieDetails ? (
         <div
-          className="flex flex-col my-4 bg-white p-8 items-center text-black
-         md:w-fit md:flex-row md:items-start [&_p]:py-1"
+          className="mx-3 my-4 flex w-full max-w-6xl min-w-0 flex-col items-center bg-white p-4 text-black
+         sm:mx-4 sm:p-6 md:flex-row md:items-start md:gap-6 md:p-8 [&_p]:py-1"
         >
           <Image
-            className="poster-details-box h-fit shadow-[10px_10px_10px_rgb(0,0,0,0.5)] rounded-xl"
+            className="poster-details-box h-fit w-full max-w-[300px] rounded-xl shadow-[10px_10px_10px_rgb(0,0,0,0.5)]"
             src={
               movieDetails.poster_path
                 ? `${link.moviebox_poster}${movieDetails.poster_path}`
@@ -54,12 +54,12 @@ const MovieDetails = ({
             priority={true}
           />
 
-          <div className="flex flex-col w-fit md:w-[650px] mt-2 md:mt-0 md:mx-10 [&_p]:text-xs [&_p]:md:text-base">
+          <div className="mt-2 flex w-full min-w-0 flex-col [&_p]:text-xs md:mt-0 md:flex-1 md:[&_p]:text-base">
             <h1 className="w-full font-bold text-center text-xl my-1 md:text-left md:w-auto md:text-3xl">
               {movieDetails.title}({getYear(movieDetails.release_date)})
             </h1>
 
-            <div className="flex justify-center md:flex-col">
+            <div className="flex min-w-0 flex-col md:flex-row md:justify-between">
               <div className="flex flex-col justify-between md:inline">
                 <p className="font-bold">
                   Release date:{" "}
@@ -68,7 +68,7 @@ const MovieDetails = ({
                   </span>
                 </p>
 
-                <p className="md:flex font-bold inline-block *:inline-block w-[40vw]">
+                <p className="font-bold">
                   Genre:&nbsp;
                   {movieDetails.genres.map(
                     (genre: { id: number; name: string }, index: number) => (
@@ -89,7 +89,7 @@ const MovieDetails = ({
                 <p className="italic my-2">{movieDetails.tagline}</p>
               </div>
 
-              <div className="flex flex-col md:flex mb-4 ml-4 md:ml-0">
+              <div className="mb-4 flex flex-col md:ml-4">
                 <div className="w-fit h-fit flex items-center bg-white rounded-md my-4 p-1 border-2 border-black">
                   <span
                     className={`${colorStatus(

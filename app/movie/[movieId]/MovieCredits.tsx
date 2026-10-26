@@ -5,7 +5,7 @@ const MovieCredits = ({ movieCast }: { movieCast: any }) => {
   return (
     <>
       {movieCast.length ? (
-        <div className="flex flex-col w-[100vw] px-8 my-4">
+        <div className="my-4 flex w-full max-w-screen-2xl flex-col px-4 sm:px-6 md:px-8">
           <h2 className="w-full font-bold text-center text-base py-2 md:text-xl">
             Top Casts
           </h2>

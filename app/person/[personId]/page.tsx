@@ -25,10 +25,10 @@ const PersonComponent = ({ params }: { params: PersonIdType }) => {
 
   return (
     <>
-      <div className="min-h-screen md:w-auto py-4 flex flex-col md:justify-center md:items-start md:flex-row">
+      <div className="flex min-h-screen w-full min-w-0 flex-col py-4 md:flex-row md:items-start md:justify-center">
         <Suspense fallback={<Loading />}>
           <PersonInfo personDetails={personDetails} />
-          <div className="bio-box flex flex-col md:py-10 md:mt-0 md:px-10 [&_p]:text-xs [&_p]:md:text-base">
+          <div className="bio-box flex min-w-0 flex-1 flex-col md:mt-0 md:px-10 md:py-10 [&_p]:text-xs [&_p]:md:text-base">
             {personDetails ? (
               <div className="bg-white dark:text-black p-0 md:p-8">
                 <Name
